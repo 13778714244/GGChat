@@ -1,0 +1,11 @@
+E:\Documents\Desktop\GGChat_V1.0\Controls\bin\Debug\Controls.dll
+E:\Documents\Desktop\GGChat_V1.0\Controls\bin\Debug\Controls.pdb
+E:\Documents\Desktop\GGChat_V1.0\Controls\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat_V1.0\Controls\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.csproj.GenerateResource.Cache
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.dll
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.pdb
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.WinUserInfo.resources
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.Properties.Resources.resources
+E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.WinButtom.resources

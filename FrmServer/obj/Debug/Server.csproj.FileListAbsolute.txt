@@ -1,0 +1,12 @@
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.exe.config
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\CSkin.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.MainForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.Properties.Resources.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.csproj.GenerateResource.Cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Common.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Common.pdb

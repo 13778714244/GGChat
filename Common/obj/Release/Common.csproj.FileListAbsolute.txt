@@ -1,0 +1,4 @@
+E:\Documents\Desktop\GGChat\Common\bin\Release\Common.dll
+E:\Documents\Desktop\GGChat\Common\bin\Release\Common.pdb
+E:\Documents\Desktop\GGChat\Common\obj\Release\Common.dll
+E:\Documents\Desktop\GGChat\Common\obj\Release\Common.pdb

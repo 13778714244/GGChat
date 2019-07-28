@@ -1,0 +1,100 @@
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.exe.config
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Server.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Common.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\CSkin.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\bin\Debug\Common.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\FrmServer.MainForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.Properties.Resources.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Server\obj\Debug\Server.pdb
+C:\Users\lenovo\Desktop\GGChat\FrmServer\bin\Debug\Server.exe.config
+C:\Users\lenovo\Desktop\GGChat\FrmServer\bin\Debug\Server.exe
+C:\Users\lenovo\Desktop\GGChat\FrmServer\bin\Debug\Server.pdb
+C:\Users\lenovo\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\lenovo\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainForm.resources
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\Server.Properties.Resources.resources
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\Server.exe
+C:\Users\lenovo\Desktop\GGChat\FrmServer\obj\Debug\Server.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmServer\bin\Debug\Server.exe.config
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\Server.exe
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\Server.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmServer\bin\Debug\Server.exe
+C:\Users\ASUS\Desktop\GGChat\FrmServer\bin\Debug\Server.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\ASUS\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainForm.resources
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\Server.Properties.Resources.resources
+C:\Users\ASUS\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\bin\Debug\FrmServer.exe.config
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\bin\Debug\FrmServer.exe
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\bin\Debug\FrmServer.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.MainForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.exe
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmServer\obj\Debug\FrmServer.pdb
+C:\Users\admin\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe.config
+C:\Users\admin\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe
+C:\Users\admin\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.pdb
+C:\Users\admin\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\admin\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainForm.resources
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.exe
+C:\Users\admin\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.pdb
+E:\Documents\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe.config
+E:\Documents\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe
+E:\Documents\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.pdb
+E:\Documents\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainServerForm.resources
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.exe
+E:\Documents\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe.config
+C:\Users\Administrator\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe
+C:\Users\Administrator\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\Administrator\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainServerForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.exe
+C:\Users\Administrator\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.pdb
+C:\Users\hp\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe.config
+C:\Users\hp\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.exe
+C:\Users\hp\Desktop\GGChat\FrmServer\bin\Debug\FrmServer.pdb
+C:\Users\hp\Desktop\GGChat\FrmServer\bin\Debug\Common.dll
+C:\Users\hp\Desktop\GGChat\FrmServer\bin\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.MainServerForm.resources
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.exe
+C:\Users\hp\Desktop\GGChat\FrmServer\obj\Debug\FrmServer.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\bin\Debug\FrmServer.exe.config
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\bin\Debug\FrmServer.exe
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\bin\Debug\FrmServer.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.MainServerForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.Properties.Resources.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.csproj.GenerateResource.Cache
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.exe
+E:\Documents\Desktop\GGChat_V1.0\FrmServer\obj\Debug\FrmServer.pdb

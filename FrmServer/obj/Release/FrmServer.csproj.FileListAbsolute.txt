@@ -1,0 +1,5 @@
+E:\Documents\Desktop\GGChat\FrmServer\bin\Release\FrmServer.exe.config
+E:\Documents\Desktop\GGChat\FrmServer\obj\Release\FrmServer.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat\FrmServer\obj\Release\FrmServer.MainServerForm.resources
+E:\Documents\Desktop\GGChat\FrmServer\obj\Release\FrmServer.Properties.Resources.resources
+E:\Documents\Desktop\GGChat\FrmServer\obj\Release\FrmServer.csproj.GenerateResource.Cache

@@ -1,0 +1,46 @@
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Common\bin\Debug\Common.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Common\bin\Debug\Common.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Common\bin\Debug\Aspose.Cells.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Common\obj\Debug\Common.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\Common\obj\Debug\Common.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\Common\bin\Debug\Common.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\Common\bin\Debug\Common.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Desktop\CwinTestDemo\Common\obj\Debug\Common.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\Common\obj\Debug\Common.pdb
+C:\Users\lenovo\Desktop\GGChat\Common\bin\Debug\Common.dll
+C:\Users\lenovo\Desktop\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\lenovo\Desktop\GGChat\Common\obj\Debug\Common.dll
+C:\Users\lenovo\Desktop\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\lenovo\Desktop\GGChat\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\GGChat\Common\bin\Debug\Common.dll
+C:\Users\ASUS\Desktop\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\ASUS\Desktop\GGChat\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\GGChat\Common\obj\Debug\Common.dll
+C:\Users\ASUS\Desktop\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\Common\bin\Debug\Common.dll
+C:\Users\admin\Desktop\新建文件夹\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\Common\obj\Debug\Common.dll
+C:\Users\admin\Desktop\新建文件夹\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\admin\Desktop\GGChat\Common\bin\Debug\Common.dll
+C:\Users\admin\Desktop\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\GGChat\Common\obj\Debug\Common.dll
+C:\Users\admin\Desktop\GGChat\Common\obj\Debug\Common.pdb
+E:\Documents\Desktop\GGChat\Common\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat\Common\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat\Common\obj\Debug\Common.dll
+E:\Documents\Desktop\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\Administrator\Desktop\GGChat\Common\bin\Debug\Common.dll
+C:\Users\Administrator\Desktop\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\Administrator\Desktop\GGChat\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\GGChat\Common\obj\Debug\Common.dll
+C:\Users\Administrator\Desktop\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\Common\bin\Debug\Common.dll
+C:\Users\hp\Desktop\GGChat\Common\bin\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\Common\obj\Debug\Common.dll
+C:\Users\hp\Desktop\GGChat\Common\obj\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat_V1.0\Common\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat_V1.0\Common\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat_V1.0\Common\obj\Debug\Common.dll
+E:\Documents\Desktop\GGChat_V1.0\Common\obj\Debug\Common.pdb

@@ -1,0 +1,198 @@
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\FrmClient.exe.config
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\FrmClient.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\FrmClient.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\Common.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\CSkin.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\JustLib.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\OMCS.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\System.Data.SQLite.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\ESBasic.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\DataRabbit.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\PaintFramework.dll
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\Common.pdb
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\JustLib.xml
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\OMCS.xml
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\ESBasic.xml
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\bin\Debug\PaintFramework.xml
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.BaseForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.ChatForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.LoginForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.MainForm.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.Properties.Resources.resources
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.exe
+c:\Users\lenovo\Documents\Visual Studio 2013\Projects\CwinTestDemo\CwinTestDemo\obj\Debug\FrmClient.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\Common.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\ESBasic.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\DataRabbit.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\PaintFramework.dll
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\Common.pdb
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\JustLib.xml
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\OMCS.xml
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\ESBasic.xml
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\bin\Debug\PaintFramework.xml
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.MainForm.resources
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\lenovo\Desktop\CwinTestDemo\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\lenovo\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\lenovo\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\lenovo\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\lenovo\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\lenovo\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainForm.resources
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\lenovo\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\ASUS\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\ASUS\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainForm.resources
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\ASUS\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\ASUS\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\ASUS\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\MyControls.dll
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\bin\Debug\MyControls.pdb
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.Form3.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.MainForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\admin\Desktop\新建文件夹\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\MyControls.dll
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\admin\Desktop\GGChat\FrmClient\bin\Debug\MyControls.pdb
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.NotReadMsgForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\admin\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.PrintScreeForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\MyControls.dll
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\MyControls.pdb
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.NotReadMsgForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainClientForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.PrintScreeForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+E:\Documents\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\FrmServer.exe
+E:\Documents\Desktop\GGChat\FrmClient\bin\Debug\FrmServer.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\Administrator\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\Administrator\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\Administrator\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.NoRead.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainClientForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.PrintScreeForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\Administrator\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe.config
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.exe
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\FrmClient.pdb
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\Common.dll
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.NoRead.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainClientForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.PrintScreeForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.exe
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\FrmClient.exe.config
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\FrmClient.exe
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\FrmClient.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\Common.dll
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\Controls.dll
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\Common.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\bin\Debug\Controls.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.BaseForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.NoRead.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.ChatForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.LoginForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.MainClientForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.Forms.RegisterFrm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.Forms.AddFriendFrm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.csproj.GenerateResource.Cache
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.exe
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.pdb
+E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.Forms.CreateGroupFrm.resources

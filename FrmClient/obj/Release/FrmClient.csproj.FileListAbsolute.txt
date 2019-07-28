@@ -1,0 +1,13 @@
+E:\Documents\Desktop\GGChat\FrmClient\bin\Release\FrmClient.exe.config
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.csprojResolveAssemblyReference.cache
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.BaseForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.NotReadMsgForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.ChatForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.EmojiForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.LoginForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.MainClientForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.PrintScreeForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.Properties.Resources.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.RedPacketForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.UserInfoForm.resources
+E:\Documents\Desktop\GGChat\FrmClient\obj\Release\FrmClient.csproj.GenerateResource.Cache
