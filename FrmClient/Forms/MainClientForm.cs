@@ -24,17 +24,18 @@ using Common.Services;
 namespace FrmClient
 {
     //定义委托
-    public delegate void ShowMsgDel(MessageInfo info);
+    public delegate void ShowMsgDel(MessageInfo fromInfo);
 
 
     public partial class MainClientForm : BaseForm
     {
+        private MessageInfo toInfo = new MessageInfo() { socket = SingleUtils.LOGINER.socket, fromUser = SingleUtils.LOGINER, fromId = SingleUtils.LOGINER.userId };
         private Form frmLogin;
         private Thread getMsgThread;
         private GGUserInfo fromUser = new GGUserInfo();
         private GGUserInfo toUser = new GGUserInfo();
         private UserInfoForm userInformationForm = new UserInfoForm();
-        private MessageInfo toInfo = new MessageInfo() { socket = SingleUtils.LOGINER.socket, fromUser = SingleUtils.LOGINER, fromId = SingleUtils.LOGINER.userId };
+
 
         public MainClientForm(Form frmLogin)
         {
@@ -68,10 +69,15 @@ namespace FrmClient
                         toInfo.msgType = MsgType.获取好友信息;
                         SocketUtils.SendToSingleClient(toInfo);
                     }
+                    else if (fromInfo.msgType == MsgType.用户注册)
+                    {
+                        MessageBox.Show(fromInfo.content);
+                    }
                     else if (fromInfo.msgType == MsgType.获取好友信息)
                     {
-                        List<GGGroupInfo> group = SerializerUtil.JsonToObject<List<GGGroupInfo>>(fromInfo.content);
-                        this.LoadFriends(group);
+                        List<GGGroup> group = SerializerUtil.JsonToObject<List<GGGroup>>(fromInfo.content);
+                        Thread loadFriendThread = new Thread(this.LoadFriends) { IsBackground = true };
+                        loadFriendThread.Start(group);
                     }
                     else if (fromInfo.msgType == MsgType.上线 || fromInfo.msgType == MsgType.下线)
                     {
@@ -79,15 +85,12 @@ namespace FrmClient
                         {
                             SoundUtils.SystemSound();
                         }
+                        SingleUtils.FriendsStr = fromInfo.content;
                         // 1.客户端收到 有人上线 指令
                         // 2.向服务器发送[ 获取好友信息 ] 的请求
                         // 3.服务器向客户端反馈[ 获取好友信息 ] 的响应后，调用 this.LoadFriends(group);方法刷新好友数据
                         toInfo.msgType = MsgType.获取好友信息;
                         SocketUtils.SendToSingleClient(toInfo);
-                    }
-                    else if (fromInfo.msgType == MsgType.私聊)
-                    {
-                        SoundUtils.NewestInfoCome();
                     }
 
                     //将信息展现到 聊天面板
@@ -98,19 +101,25 @@ namespace FrmClient
 
                         //发送者和接收者反转显示
                         string chatFormKey = GGUserUtils.GetChatFormKey(toUser, fromUser);
+                        //string chatFormKey = GGUserUtils.GetChatFormKey(fromUser, toUser);
 
                         //存在聊天窗口 
                         if (SingleUtils.chatForm.ContainsKey(chatFormKey))
                         {
                             ChatForm chatFrom = SingleUtils.chatForm[chatFormKey] as ChatForm;
-                            chatFrom.WindowState = FormWindowState.Normal;
-                            SingleUtils.showMsgDelMethod(fromInfo);
+                            if (chatFrom.showMsgDelMethod != null)
+                            {
+                                chatFrom.WindowState = FormWindowState.Normal;
+                                chatFrom.showMsgDelMethod(fromInfo);
+                            }
                         }
                         //不存在聊天窗口 
                         else
                         {
+                            SoundUtils.NewestInfoCome();
                             //将信息添加到集合里面 
                             fromInfo.msgStateType = msgStateType.未读消息;
+                            fromInfo.fromNoRead = 1;
                             SingleUtils.noReadDic.Add(fromUser, fromInfo);
                             if (fromInfo.msgType == MsgType.私发抖动)
                             {
@@ -159,10 +168,11 @@ namespace FrmClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LoadFriends(List<GGGroupInfo> groupList)
+        private void LoadFriends(object paramGroupList)
         {
+            List<GGGroup> groupList = paramGroupList as List<GGGroup>;
             string friendsStr = "";
-            List<GGGroupInfo> friendsGroupList = new List<GGGroupInfo>();
+            List<GGGroup> friendsGroupList = new List<GGGroup>();
             friendsList.Items.Clear();
             friendsList.Groups.Clear();
             friendsList.Columns.Clear();
@@ -173,41 +183,28 @@ namespace FrmClient
             notifyIcon1.Text = string.Format("QQ:{0}({1})\r\n声音:{2}\r\n消息提示:{3}\r\n会话消息:{4}", SingleUtils.LOGINER.userNickName, SingleUtils.LOGINER.userId, "未开启", "开启", "头像闪烁");
 
             ImageList imgList = new ImageList();
+            this.friendsList.LargeImageList = this.friendsList.SmallImageList = imgList; // ImageList 属性 
             imgList.ImageSize = new Size(40, 40);
             if (groupList.Count > 0)
             {
-                foreach (GGGroupInfo group in groupList)
+                foreach (GGGroup group in groupList)
                 {
                     friendsGroupList.Add(group);
 
-                    ListViewGroup groupItem = new ListViewGroup(group.groupName);
-                    friendsList.Groups.Add(groupItem);
-                    if (string.IsNullOrEmpty(group.members) || group.memberList.Count <= 0)
-                    {
-                        ListViewItem friendItem = new ListViewItem(groupItem);
-                        friendsList.Items.Add(friendItem);
-                    }
-                    else if (!string.IsNullOrEmpty(group.members) && group.memberList.Count > 0)
-                    {
+                    ListViewGroup groupItem = new ListViewGroup(group.groupName + "(" + group.memberList.Count + ")");
+                    this.friendsList.Groups.Add(groupItem);
 
-                        List<GGUserInfo> userList = group.memberList;
-                        foreach (GGUserInfo user in userList)
+                    if (!string.IsNullOrEmpty(group.members) && group.memberList.Count > 0)
+                    {
+                        foreach (GGUserInfo user in group.memberList)
                         {
-                            user.groupAutoId = group.groupAutoId;
-                            friendsStr += user.userId + ",";
-                            Image img = Image.FromFile(SingleUtils.userImgPath + user.userImg);
-                            if (user.isOnLine)
-                            {
-                                imgList.Images.Add(user.userId, img);
-                            }
-                            else
-                            {
-                                imgList.Images.Add(user.userId, ImageUtils.GetGrayImg(img));
-                            }
-
-                            friendsList.LargeImageList = friendsList.SmallImageList = imgList; // ImageList 属性 
-
                             ListViewItem friendItem = new ListViewItem(groupItem);
+                            user.groupAutoId = group.groupAutoId;
+                            //添加好友ID
+                            friendsStr += user.userId + ",";
+                            Image img = HeadImgUtils.ShowHeadImg(user);
+                            imgList.Images.Add(user.userId, img);
+
                             friendItem.Tag = user;
                             friendItem.Name = user.userId;
                             friendItem.Font = new Font(friendItem.Font.FontFamily, 10, FontStyle.Regular);
@@ -215,10 +212,8 @@ namespace FrmClient
                             friendItem.Text = "[" + (user.isOnLine ? "在线" : "离线") + "]" + user.userNickName + "(" + user.userId + ")" + Environment.NewLine + user.qqSign;
                             friendItem.SubItems.Add(user.userNickName);
                             friendItem.SubItems.Add(user.userId);
-                            friendItem.ImageKey = user.userId;//设置头像 
-
-                            friendsList.Items.Add(friendItem);
-
+                            friendItem.ImageKey = user.userId;//设置头像  
+                            this.friendsList.Items.Add(friendItem);
                         }
                     }
                 }
@@ -235,10 +230,10 @@ namespace FrmClient
         /// <summary>
         /// 初始化分组选项
         /// </summary>
-        private void InitMoveGroup(List<GGGroupInfo> groupList)
+        private void InitMoveGroup(List<GGGroup> groupList)
         {
             this.moveToGroup.DropDownItems.Clear();
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
                 ToolStripItem item = this.moveToGroup.DropDownItems.Add(group.groupName);
                 item.Tag = group.groupAutoId;
@@ -280,7 +275,7 @@ namespace FrmClient
         /// </summary>
         private void InitPerInfo()
         {
-            this.picHeadImg.Image = Image.FromFile(SingleUtils.userImgPath + SingleUtils.LOGINER.userImg);
+            this.picHeadImg.Image = HeadImgUtils.ShowHeadImg(SingleUtils.LOGINER);
             this.lblNickName.Text = GGUserUtils.GetNickAndId(SingleUtils.LOGINER);
             this.lblQQSign.Text = SingleUtils.LOGINER.qqSign;
             this.Text = SingleUtils.LOGINER.socket.RemoteEndPoint + "";
@@ -454,18 +449,20 @@ namespace FrmClient
                 {
                     GGUserInfo fromUser = item.Key;
                     MessageInfo fromInfo = item.Value;
-                    string chatFormKey = GGUserUtils.GetChatFormKey(SingleUtils.LOGINER, fromUser);
-
+                    string chatFormKey = GGUserUtils.GetChatFormKey(fromUser, SingleUtils.LOGINER);
+                    ChatForm chatFrom = null;
                     if (SingleUtils.chatForm.ContainsKey(chatFormKey))
                     {
-                        ChatForm chatFrom = SingleUtils.chatForm[chatFormKey] as ChatForm;
+                        chatFrom = SingleUtils.chatForm[chatFormKey] as ChatForm;
                         chatFrom.WindowState = FormWindowState.Normal;
+
                     }
                     else
                     {
-                        new ChatForm(SingleUtils.LOGINER, fromUser).Show();
+                        chatFrom = new ChatForm(SingleUtils.LOGINER, fromUser);
+                        chatFrom.Show();
                     }
-                    SingleUtils.showMsgDelMethod(fromInfo);
+                    chatFrom.showMsgDelMethod(fromInfo);
                 }
                 SingleUtils.noReadDic.Clear();
             }
@@ -520,15 +517,15 @@ namespace FrmClient
         /// </summary>
         private void GetNoReadMsg()
         {
-            string sql = "SELECT * FROM [dbo].[ChatMessageRecord] where receiveId='" + SingleUtils.LOGINER.userId + "' and isRead=0 ";
+            string sql = string.Format("SELECT * FROM [dbo].[{0}] where receiveId='{1}' and isRead=0 ", DBTUtils.DBT_NoReadMsg, SingleUtils.LOGINER.userId);
 
-            List<ChatMessageRecord> list = DBHelper.ConvertToModel<ChatMessageRecord>(sql);
+            List<NoReadMsg> list = DBHelper.ConvertToModel<NoReadMsg>(sql);
             if (list.Count > 0)
             {
                 SoundUtils.NewestInfoCome();
                 SingleUtils.isIconTD = true;
             }
-            foreach (ChatMessageRecord msg in list)
+            foreach (NoReadMsg msg in list)
             {
                 GGUserInfo fromUser = ChatDBUtils.GetPerInfoByUserId(msg.sendId);
                 MessageInfo fromInfo = new MessageInfo();
@@ -537,6 +534,7 @@ namespace FrmClient
                 fromInfo.content = msg.content;
                 fromInfo.msgType = msg.msgType;
                 fromInfo.dateTime = msg.datetime;
+                fromInfo.fromNoRead = 1;
                 SingleUtils.noReadDic.Add(fromUser, fromInfo);
             }
         }
@@ -561,11 +559,12 @@ namespace FrmClient
             GGUserInfo user = item.Tag as GGUserInfo;
 
 
-            DialogResult dr = MessageBox.Show(user.groupAutoId + "确认删除" + GGUserUtils.ShowNickAndId(user) + "？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dr = MessageBox.Show("确认删除" + GGUserUtils.ShowNickAndId(user) + "？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
             {
                 toInfo.msgType = MsgType.删除好友;
-                toInfo.toId = user.userId;
+                toInfo.toId = user.userAutoid.ToString();
+                toInfo.toUser = user;
                 toInfo.content = user.groupAutoId.ToString();
                 SocketUtils.SendToSingleClient(toInfo);
             }
@@ -593,7 +592,7 @@ namespace FrmClient
             {
                 ListViewItem lvi = this.friendsList.SelectedItems[0] as ListViewItem;
                 GGUserInfo user = lvi.Tag as GGUserInfo;
-                List<GGGroupInfo> groupList = SingleUtils.FriendsGroupList.Where(i => i.groupAutoId != user.groupAutoId).ToList();
+                List<GGGroup> groupList = SingleUtils.FriendsGroupList.Where(i => i.groupAutoId != user.groupAutoId).ToList();
                 this.InitMoveGroup(groupList);
             }
             catch (Exception ex)

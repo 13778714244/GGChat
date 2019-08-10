@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace Common.Utils
 {
     public class ImageUtils
     {
+
+
         /// <summary>
         /// 将彩色图片转化为灰色
         /// </summary>
@@ -86,7 +89,7 @@ namespace Common.Utils
         /// <param name="srcImage">要缩小的图片</param> 
         /// <param name="percent">缩小比例</param> 
         /// <returns>缩小后的结果</returns> 
-        public static Bitmap PercentImage(Image srcImage, double percent=0.5)
+        public static Bitmap PercentImage(Image srcImage, double percent = 0.5)
         {
             // 缩小后的高度 
             int newH = int.Parse(Math.Round(srcImage.Height * percent).ToString());
@@ -107,6 +110,6 @@ namespace Common.Utils
             {
                 return null;
             }
-        } 
+        }
     }
 }

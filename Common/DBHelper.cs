@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using System.Configuration;
 using System.Data.OleDb;
+using System.Text.RegularExpressions;
 
 namespace Common
 {
@@ -429,7 +430,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 增删改的通用方法[参数化]
+        /// 增删改的通用方法[正则表达式 参数化]
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -439,18 +440,19 @@ namespace Common
             SqlTransaction tran = null;
             try
             {
-                string[] arr = sql.Split('@');
-                SqlParameter[] sqlParaArr = new SqlParameter[arr.Length - 1];
-                for (int i = 1; i < arr.Length; i++)
+                Regex r = new Regex(@"@+\w+"); // 定义一个Regex对象实例
+
+                MatchCollection paramCollection = r.Matches(sql); // 在字符串中匹配 
+
+                SqlParameter[] sqlParaArr = new SqlParameter[paramCollection.Count];
+                for (int i = 0; i < paramCollection.Count; i++) //在输入字符串中找到所有匹配
                 {
-                    string temp = arr[i].Trim().Replace("\r\n", "");
-                    temp = temp.Substring(0, temp.Length - 1);
-                    string field = "@" + temp;
-                    sqlParaArr[i - 1] = new SqlParameter(field, sqlValueArr[i - 1]);
+                    string val = paramCollection[i].Value.Trim().Replace("\r\n", ""); 
+                    sqlParaArr[i] = new SqlParameter(val, sqlValueArr[i]);
                 }
                 SqlConnection con = new SqlConnection(ConStr);
                 con.Open();
-                tran = con.BeginTransaction();
+                tran = con.BeginTransaction(); 
                 SqlCommand cmd = new SqlCommand(sql, con);
                 foreach (SqlParameter item in sqlParaArr)
                 {
@@ -468,7 +470,6 @@ namespace Common
                     tran.Rollback();
                 }
                 row = -1;
-                throw;
             }
             return row;
         }
@@ -767,8 +768,8 @@ namespace Common
                                     default:
                                         pi.SetValue(t, value);
                                         break;
-                                        //throw new Exception("类型不匹配:" + pi.PropertyType.FullName);
-                                        
+                                    //throw new Exception("类型不匹配:" + pi.PropertyType.FullName);
+
                                 }
                             }
                         }

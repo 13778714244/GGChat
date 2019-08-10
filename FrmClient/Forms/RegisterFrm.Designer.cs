@@ -40,6 +40,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.head)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +119,8 @@
             // head
             // 
             this.head.BackColor = System.Drawing.Color.Transparent;
-            this.head.Location = new System.Drawing.Point(341, 120);
+            this.head.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.head.Location = new System.Drawing.Point(379, 120);
             this.head.Name = "head";
             this.head.Size = new System.Drawing.Size(105, 99);
             this.head.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -128,7 +130,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(359, 243);
+            this.button1.Location = new System.Drawing.Point(397, 243);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -158,11 +160,24 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(300, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "随机昵称";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // RegisterFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 373);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -176,6 +191,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nick);
             this.Name = "RegisterFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "用户注册";
             ((System.ComponentModel.ISupportInitialize)(this.head)).EndInit();
             this.ResumeLayout(false);
@@ -197,5 +213,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label5;
     }
 }

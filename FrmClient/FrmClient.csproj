@@ -132,7 +132,8 @@
     </Compile>
     <Compile Include="Utils\ChatRecordUtils.cs" />
     <Compile Include="Utils\ControlExtensions.cs" />
-    <Compile Include="Utils\SessionUtils.cs" />
+    <Compile Include="Utils\HeadImgUtils.cs" />
+    <Compile Include="Utils\SingleUtils.cs" />
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>

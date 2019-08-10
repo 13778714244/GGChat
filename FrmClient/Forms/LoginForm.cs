@@ -2,7 +2,9 @@
 using Common;
 using Common.enums;
 using Common.model;
+using Common.Services;
 using Common.Utils;
+using FrmClient.Forms;
 using FrmClient.Utils;
 using System;
 using System.Collections.Generic;
@@ -61,7 +63,13 @@ namespace FrmClient
                 item.Size = new System.Drawing.Size(182, 45);
                 item.Text = userNickName + "\n" + userId;
                 item.Tag = new string[] { userId, userNickName };  //Tag用于存储UserID 和 NickName
-                item.Image = Image.FromFile(ToolUtils.GetResourcePath(@"\Images\userImg\") + userItem[3]); //根据ID获取头像
+                try
+                {
+                    item.Image = Image.FromFile(ToolUtils.GetResourcePath(@"\Images\userImg\") + userItem[3]); //根据ID获取头像
+                }
+                catch (Exception)
+                {
+                }
                 item.Click += new EventHandler(toolStripMenuItemID_Click);
                 menuStripId.Height += 45;
                 menuStripId.Items.Add(item);
@@ -118,6 +126,7 @@ namespace FrmClient
                     GGUserInfo loginUser = SerializerUtil.JsonToObject<GGUserInfo>(fromInfo.content);
                     loginUser.socket = SingleUtils.serverSocket;
                     loginUser.canSpeak = true;
+                    loginUser.isOnLine = true;
                     SingleUtils.LOGINER = loginUser;
                     this.Hide();
                     new MainClientForm(this).Show();
@@ -179,6 +188,26 @@ namespace FrmClient
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+            RegisterFrm frm = new RegisterFrm();
+            frm.Show();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                List<GGUserInfo> user = ChatDBUtils.GetAllUser();
+                foreach (GGUserInfo item in user)
+                {
+                    HeadImgUtils.SaveRegisterUserHeadImg(Image.FromFile(""), item);
+                }
+                MessageBox.Show("完成");
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
             this.msgContent = new CCWin.SkinControl.RtfRichTextBox();
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.gifBox_wait = new JustLib.Controls.GifBox();
             this.btnClose = new CCWin.SkinControl.SkinButton();
             this.skinButton_send = new CCWin.SkinControl.SkinButton();
@@ -77,7 +78,6 @@
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).BeginInit();
             this.mainSplit.Panel1.SuspendLayout();
             this.mainSplit.Panel2.SuspendLayout();
@@ -526,6 +526,16 @@
             this.skinPanel2.Size = new System.Drawing.Size(456, 54);
             this.skinPanel2.TabIndex = 150;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(356, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 146;
+            this.button1.Text = "刷新";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // gifBox_wait
             // 
             this.gifBox_wait.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -894,7 +904,7 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(36, 31);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(39, 31);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // toolStripButton3
@@ -910,16 +920,6 @@
             // 
             this.ofd.FileName = "openFileDialog1";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(356, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 146;
-            this.button1.Text = "刷新";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -933,6 +933,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ChatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.Load += new System.EventHandler(this.ChatForm_Load);
             this.Shown += new System.EventHandler(this.ChatForm_Shown);
             this.Click += new System.EventHandler(this.ChatForm_Click);

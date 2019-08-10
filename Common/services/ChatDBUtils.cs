@@ -17,22 +17,30 @@ namespace Common.Services
         /// </summary>
         /// <param name="fromInfo"></param>
         /// <returns></returns>
-        public static List<GGGroupInfo> GetGroupFriendsInfo(string userId)
+        public static List<GGGroup> GetGroupFriendsInfo(string userId)
         {
             //得到分组
-            string groupSql = string.Format("select * from GGGroup where createId='{0}'", userId);
-            List<GGGroupInfo> groupList = DBHelper.ConvertToExtModel<GGGroupInfo>(groupSql);
+            string groupSql = string.Format("select * from {0} where createId='{1}'", DBTUtils.DBT_GGGroup, userId);
+            List<GGGroup> groupList = DBHelper.ConvertToExtModel<GGGroup>(groupSql);
 
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
                 if (!string.IsNullOrEmpty(group.members))
                 {
                     string members = group.members;
+
                     if (!string.IsNullOrEmpty(members))
                     {
-                        members = members.Substring(1);
+                        if (members.StartsWith(","))
+                        {
+                            members = members.Substring(1);
+                        }
+                        else if (members.EndsWith(","))
+                        {
+                            members = members.Substring(0, members.Length - 1);
+                        }
                     }
-                    string userSql = string.Format("select * from GGUser where userAutoid in({0})", members);
+                    string userSql = string.Format("select * from {1} where userAutoid in({0})", members, DBTUtils.DBT_GGUser);
                     List<GGUserInfo> userList = DBHelper.ConvertToExtModel<GGUserInfo>(userSql);
                     foreach (GGUserInfo user in userList)
                     {
@@ -59,9 +67,9 @@ namespace Common.Services
         /// <returns></returns>
         public static List<GGUserInfo> GetFriendsInfo(string userId)
         {
-            List<GGGroupInfo> groupFriendList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupFriendList = ChatDBUtils.GetGroupFriendsInfo(userId);
             List<GGUserInfo> userList = new List<GGUserInfo>();
-            foreach (GGGroupInfo group in groupFriendList)
+            foreach (GGGroup group in groupFriendList)
             {
                 if (!string.IsNullOrEmpty(group.members) && group.memberList.Count > 0)
                 {
@@ -73,6 +81,8 @@ namespace Common.Services
 
 
 
+
+
         /// <summary>
         /// 获得好友分组
         /// </summary>
@@ -80,9 +90,9 @@ namespace Common.Services
         /// <returns></returns>
         public static string GetPerGroupsStr(string userId)
         {
-            List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
             string res = "";
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
                 res += ToolUtils.GetSpaces() + group.groupName;
             }
@@ -96,9 +106,9 @@ namespace Common.Services
         /// <returns></returns>
         public static string GetPerFriendsStr(string userId)
         {
-            List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
             string res = "";
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
 
                 foreach (GGUserInfo user in group.memberList)
@@ -117,9 +127,9 @@ namespace Common.Services
         /// <returns></returns>
         public static string GetPerOnlineFriendsStr(string userId)
         {
-            List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
             string res = "";
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
 
                 foreach (GGUserInfo user in group.memberList)
@@ -146,9 +156,9 @@ namespace Common.Services
         /// <returns></returns>
         public static string GetPerGroupFriendsStr(string userId)
         {
-            List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
             string res = "";
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
                 res += group.groupName + "：[";
                 foreach (GGUserInfo user in group.memberList)
@@ -167,9 +177,9 @@ namespace Common.Services
         /// <returns></returns>
         public static string GetPerOnlineGroupFriendsStr(string userId)
         {
-            List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
+            List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(userId);
             string res = "";
-            foreach (GGGroupInfo group in groupList)
+            foreach (GGGroup group in groupList)
             {
                 res += group.groupName + "：[";
                 foreach (GGUserInfo user in group.memberList)
@@ -197,15 +207,7 @@ namespace Common.Services
         /// <returns></returns>
         public static GGUserInfo GetPerInfoByUserId(string userId)
         {
-            string sql = @"SELECT [userAutoid]
-                          ,[userId]
-                          ,[userPwd]
-                          ,[userNickName]
-                          ,[qqSign]
-                          ,[userImg]
-                          ,[createTime]
-                      FROM [dbo].[GGUser]
-                      where userId='" + userId + "'";
+            string sql = string.Format("SELECT [userAutoid],[userId],[userPwd],[userNickName],[qqSign],[userImg],[createTime]FROM [dbo].[{0}]where userId='{1}'", DBTUtils.DBT_GGUser, userId);
             List<GGUserInfo> singleUser = DBHelper.ConvertToExtModel<GGUserInfo>(sql);
             return singleUser[0];
         }
@@ -217,15 +219,7 @@ namespace Common.Services
         /// <returns></returns>
         public static GGUserInfo GetPerInfoByAutoId(int autoId)
         {
-            string sql = @"SELECT [userAutoid]
-                          ,[userId]
-                          ,[userPwd]
-                          ,[userNickName]
-                          ,[qqSign]
-                          ,[userImg]
-                          ,[createTime]
-                      FROM [dbo].[GGUser]
-                      where userAutoid='" + autoId + "'";
+            string sql = string.Format("SELECT [userAutoid],[userId],[userPwd],[userNickName],[qqSign],[userImg],[createTime]FROM [dbo].[{0}]where userAutoid='{1}'", DBTUtils.DBT_GGUser, autoId);
             List<GGUserInfo> singleUser = DBHelper.ConvertToExtModel<GGUserInfo>(sql);
             return singleUser[0];
         }
@@ -233,22 +227,7 @@ namespace Common.Services
         public static bool AddOfflineMsgToClient(MessageInfo fromInfo)
         {
             //私发离线信息                            
-            string sql = @"INSERT INTO [dbo].[ChatMessageRecord]
-                                           ([chatRecordId]
-                                           ,[sendId]
-                                           ,[receiveId]
-                                           ,[msgType]
-                                           ,[content]
-                                           ,[dateTime]
-                                           ,isRead)
-                                     VALUES
-                                           (@chatRecordId,
-                                           @sendId, 
-                                           @receiveId,  
-                                           @msgType,                                     
-                                           @content, 
-                                           @dateTime,
-                                           @isRead)";
+            string sql = "INSERT INTO [dbo].[" + DBTUtils.DBT_NoReadMsg + "]([chatRecordId],[sendId],[receiveId],[msgType],[content],[dateTime],isRead)VALUES(@@chatRecordId,@@sendId, @@receiveId,  @@msgType,@@content, @@dateTime,@@isRead)";
             object[] param = { 
                                 Guid.NewGuid(),
                                 fromInfo.fromId,
@@ -269,20 +248,12 @@ namespace Common.Services
         /// </summary>
         /// <param name="fromInfo"></param>
         /// <returns></returns>
-        public static GGGroupInfo GetGroupByName(string groupName)
+        public static GGGroup GetGroupByName(string groupName)
         {
             //私发离线信息                            
-            string sql = @"SELECT [groupAutoId]
-                          ,[groupId]
-                          ,[groupName]
-                          ,[createId]
-                          ,[members]
-                          ,[createTime]
-                          ,[isDefault]
-                      FROM [dbo].[GGGroup]
-                        where groupName='" + groupName + "'";
+            string sql = string.Format("SELECT [groupAutoId],[groupId],[groupName],[createId],[members],[createTime],[isDefault]FROM [dbo].[{0}] where groupName='{1}'", DBTUtils.DBT_GGGroup, groupName);
 
-            List<GGGroupInfo> defaultGroup = DBHelper.ConvertToExtModel<GGGroupInfo>(sql);
+            List<GGGroup> defaultGroup = DBHelper.ConvertToExtModel<GGGroup>(sql);
             if (defaultGroup.Count > 0)
             {
                 return defaultGroup[0];
@@ -299,20 +270,12 @@ namespace Common.Services
         /// </summary>
         /// <param name="fromInfo"></param>
         /// <returns></returns>
-        public static GGGroupInfo GetDefaultGroup(string userId)
+        public static GGGroup GetDefaultGroup(string userId)
         {
             //私发离线信息                            
-            string sql = @"SELECT [groupAutoId]
-                          ,[groupId]
-                          ,[groupName]
-                          ,[createId]
-                          ,[members]
-                          ,[createTime]
-                          ,[isDefault]
-                      FROM [dbo].[GGGroup]
-                        where createId='" + userId.Trim() + "' and isDefault=1";
+            string sql = string.Format("SELECT [groupAutoId],[groupId],[groupName],[createId],[members],[createTime],[isDefault]FROM [dbo].[{0}] where createId='{1}' and isDefault=1", DBTUtils.DBT_GGGroup, userId.Trim());
 
-            List<GGGroupInfo> defaultGroup = DBHelper.ConvertToExtModel<GGGroupInfo>(sql);
+            List<GGGroup> defaultGroup = DBHelper.ConvertToExtModel<GGGroup>(sql);
             if (defaultGroup.Count > 0)
             {
                 return defaultGroup[0];
@@ -328,20 +291,12 @@ namespace Common.Services
         /// </summary>
         /// <param name="fromInfo"></param>
         /// <returns></returns>
-        public static GGGroupInfo GetSingeGroupByAutoId(int autoId)
+        public static GGGroup GetSingeGroupByAutoId(int autoId)
         {
             //私发离线信息                            
-            string sql = @"SELECT [groupAutoId]
-      ,[groupId]
-      ,[groupName]
-      ,[createId]
-      ,[members]
-      ,[createTime]
-      ,[isDefault]
-  FROM [dbo].[GGGroup]
-    where groupAutoId=" + autoId + "";
+            string sql = string.Format("SELECT [groupAutoId],[groupId],[groupName],[createId],[members],[createTime],[isDefault]FROM [dbo].[{0}]where groupAutoId={1}", DBTUtils.DBT_GGGroup, autoId);
 
-            List<GGGroupInfo> defaultGroup = DBHelper.ConvertToExtModel<GGGroupInfo>(sql);
+            List<GGGroup> defaultGroup = DBHelper.ConvertToExtModel<GGGroup>(sql);
 
             return defaultGroup[0];
         }
@@ -352,10 +307,10 @@ namespace Common.Services
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public static bool AddFriend(GGGroupInfo defaultGroup, int friendAutoId)
+        public static bool AddFriend(GGGroup defaultGroup, int friendAutoId)
         {
             string members = defaultGroup.members + "," + friendAutoId;
-            string sql = @"UPDATE [dbo].[GGGroup] SET [members] = '" + members + "' WHERE groupAutoId=" + defaultGroup.groupAutoId + "";
+            string sql = string.Format("UPDATE [dbo].[{0}] SET [members] = '{1}' WHERE groupAutoId={2}", DBTUtils.DBT_GGGroup, members, defaultGroup.groupAutoId);
             int row = DBHelper.Excute(sql);
             return row > 0 ? true : false;
         }
@@ -366,10 +321,10 @@ namespace Common.Services
         /// <param name="group"></param>
         /// <param name="friendAutoId"></param>
         /// <returns></returns>
-        public static bool DelFriend(GGGroupInfo group, string friendAutoId)
+        public static bool DelFriend(GGGroup group, string friendAutoId)
         {
             string members = group.members.Replace("," + friendAutoId, "");
-            string sql = @"UPDATE [dbo].[GGGroup] SET [members] = '" + members + "' WHERE groupAutoId=" + group.groupAutoId + "";
+            string sql = string.Format("UPDATE [dbo].[{0}] SET [members] = '{1}' WHERE groupAutoId={2}", DBTUtils.DBT_GGGroup, members, group.groupAutoId);
             int row = DBHelper.Excute(sql);
             return row > 0 ? true : false;
         }
@@ -384,20 +339,7 @@ namespace Common.Services
         /// <returns></returns>
         public static bool CreateGroup(GGUserInfo gGUserInfo, string groupName, bool isDefault = false)
         {
-            string sql = @"INSERT INTO [dbo].[GGGroup]
-                           ([groupId]
-                           ,[groupName]
-                           ,[createId]
-                           ,[members]
-                           ,[createTime]
-                           ,[isDefault])
-                     VALUES
-                           (@groupId, 
-                           @groupName, 
-                           @createId,  
-                           @members,  
-                           @createTime,  
-                           @isDefault )";
+            string sql = "INSERT INTO [dbo].[" + DBTUtils.DBT_GGGroup + "]([groupId],[groupName],[createId],[members],[createTime],[isDefault])VALUES(@@groupId, @@groupName, @@createId,  @@members,  @@createTime,  @@isDefault )";
             object[] valArr = { "group" + gGUserInfo.userId, groupName, gGUserInfo.userId, "", DateTime.Now, isDefault ? 1 : 0 };
             int row = DBHelper.Excute(sql, valArr);
             return row > 0 ? true : false;
@@ -410,7 +352,7 @@ namespace Common.Services
         /// <param name="groupAutoId"></param>
         public static bool DelGroup(string groupAutoId)
         {
-            string sql = "DELETE FROM [dbo].[GGGroup] WHERE groupAutoId=" + groupAutoId + "";
+            string sql = string.Format("DELETE FROM [dbo].[{0}] WHERE groupAutoId={1}", DBTUtils.DBT_GGGroup, groupAutoId);
             int row = DBHelper.Excute(sql);
             return row > 0 ? true : false;
         }
@@ -422,7 +364,7 @@ namespace Common.Services
         /// <param name="groupName"></param>
         public static bool UpdateGroup(string groupAutoId, string groupName)
         {
-            string sql = "UPDATE [dbo].[GGGroup] SET [groupName] = '" + groupName + "' WHERE groupAutoId='" + groupAutoId + "'";
+            string sql = string.Format("UPDATE [dbo].[{0}] SET [groupName] = '{1}' WHERE groupAutoId={2}", DBTUtils.DBT_GGGroup, groupName, groupAutoId);
             int row = DBHelper.Excute(sql);
             return row > 0 ? true : false;
         }
@@ -434,12 +376,60 @@ namespace Common.Services
         /// <param name="friendAutoId"></param>
         public static bool MoveGroup(int oldGroupAutoId, int newGroupAutoId, int friendAutoId)
         {
-            string addSql = @"UPDATE [dbo].[GGGroup] SET [members] =CAST([members] AS VARCHAR)+ '," + friendAutoId + "' WHERE groupAutoId=" + newGroupAutoId + "";
+            string addSql = string.Format("UPDATE [dbo].[{0}] SET [members] =CAST([members] AS VARCHAR)+ ',{1}' WHERE groupAutoId={2}", DBTUtils.DBT_GGGroup, friendAutoId, newGroupAutoId);
 
-            string delSql = @"UPDATE [dbo].[GGGroup] SET [members] =replace(CAST( [members] as varchar),'," + friendAutoId + "','') WHERE groupAutoId=" + oldGroupAutoId + "";
+            string delSql = string.Format("UPDATE [dbo].[{0}] SET [members] =replace(CAST( [members] as varchar),',{1}','') WHERE groupAutoId={2}", DBTUtils.DBT_GGGroup, friendAutoId, oldGroupAutoId);
             string[] sqlArr = { addSql, delSql };
             int row = DBHelper.Excute(sqlArr);
             return row > 0 ? true : false;
+        }
+
+
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public static bool RegisterUser(GGUser user)
+        {
+
+            string sql = @"INSERT INTO [dbo].[GGUser]
+           ([userId]
+           ,[userPwd]
+           ,[userNickName]
+           ,[qqSign]
+           ,[userImg]
+           ,[createTime])
+     VALUES
+           (@userId,  
+           @userPwd,  
+           @userNickName,  
+           @qqSign, 
+           @userImg,  
+           @createTime)";
+
+            object[] valArr = { user.userId, user.userPwd, user.userNickName, user.qqSign, user.userImg, DateTime.Now };
+            if (DBHelper.Excute(sql, valArr) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 获取所有用户信息
+        /// </summary>
+        /// <param name="fromInfo"></param>
+        /// <returns></returns>
+        public static List<GGUserInfo> GetAllUser()
+        {
+
+            List<GGUserInfo> userList = DBHelper.ConvertToExtModel<GGUserInfo>("select*from GGUser");
+
+            return userList;
         }
     }
 }

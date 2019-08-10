@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Common.model
 {
     [Serializable]
-    public class ChatMessageRecord
+    public class NoReadMsg
     { 
         public int chatRecordAutoId { get; set; }
         public string chatRecordId { get; set; }

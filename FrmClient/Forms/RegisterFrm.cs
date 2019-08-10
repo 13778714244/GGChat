@@ -1,10 +1,15 @@
 ﻿using Common;
+using Common.enums;
+using Common.model;
+using Common.Services;
+using Common.Utils;
 using FrmClient.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +19,8 @@ namespace FrmClient.Forms
 {
     public partial class RegisterFrm : BaseForm
     {
+        private string fullFileName;
+        private Image headImg = null;
         public RegisterFrm()
         {
             InitializeComponent();
@@ -21,62 +28,31 @@ namespace FrmClient.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string userId = this.GetUserId();
+            string userId = NickUtils.GetUserId();
             string nick = this.nick.Text;
             string pwd = this.pwd.Text;
             string relPwd = this.relPwd.Text;
             string qqSign = this.qqSign.Text;
 
-            string sql = @"INSERT INTO [dbo].[GGUser]
-           ([userId]
-           ,[userPwd]
-           ,[userNickName]
-           ,[qqSign]
-           ,[userImg]
-           ,[createTime])
-     VALUES
-           (@userId,  
-           @userPwd,  
-           @userNickName,  
-           @qqSign, 
-           @userImg,  
-           @createTime)";
+            string name = userId;
+            string extend = Path.GetExtension(fullFileName);
+            GGUserInfo user = new GGUserInfo() { createTime = DateTime.Now, qqSign = qqSign, userId = userId, userImg = (headImg == null ? "" : name + extend), userNickName = nick, userPwd = pwd };
 
-            string fileName = userId + System.IO.Path.GetExtension(fullFileName);
-            object[] valArr = { userId, pwd, nick, qqSign, headImg == null ? "" : fileName, DateTime.Now };
-            if (DBHelper.Excute(sql, valArr) > 0)
+            if (ChatDBUtils.RegisterUser(user))
             {
-                MessageBox.Show("注册成功[" + userId + "]");
-                if (headImg != null)
-                {
-                    this.headImg.Save(SingleUtils.userImgPath + fileName);
-                }
+                HeadImgUtils.SaveRegisterUserHeadImg(this.headImg, user);
+                MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册成功");
             }
             else
             {
-                MessageBox.Show("注册失败");
+                MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册失败");
             }
-
         }
 
-        /// <summary>
-        /// 得到QQ号码
-        /// </summary>
-        /// <returns></returns>
-        public string GetUserId()
-        {
-            Random random = new Random();
-            string userId = "";
-            for (int i = 0; i < 10; i++)
-            {
-                int r = random.Next(0, 20);
-                userId += r;
-            }
-            userId = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            return userId;
-        }
-        private string fullFileName;
-        private Image headImg = null;
+
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -92,7 +68,15 @@ namespace FrmClient.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            MessageBox.Show(NickUtils.GetUserId());
+
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            this.nick.Text = NickUtils.GetNickName();
+        }
+
+
     }
 }

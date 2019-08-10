@@ -166,7 +166,6 @@ C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.ChatForm.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.EmojiForm.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.LoginForm.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.MainClientForm.resources
-C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.PrintScreeForm.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Properties.Resources.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.RedPacketForm.resources
 C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.UserInfoForm.resources
@@ -196,3 +195,8 @@ E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.csproj.GenerateRe
 E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.exe
 E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.pdb
 E:\Documents\Desktop\GGChat_V1.0\FrmClient\obj\Debug\FrmClient.Forms.CreateGroupFrm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\Controls.dll
+C:\Users\hp\Desktop\GGChat\FrmClient\bin\Debug\Controls.pdb
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Forms.RegisterFrm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Forms.AddFriendFrm.resources
+C:\Users\hp\Desktop\GGChat\FrmClient\obj\Debug\FrmClient.Forms.CreateGroupFrm.resources

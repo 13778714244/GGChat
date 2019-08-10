@@ -155,10 +155,7 @@ namespace FrmClient
             catch (Exception)
             {
             }
-        }
-
-
- 
+        } 
 
         private void EmojiForm_FormClosing(object sender, FormClosingEventArgs e)
         {

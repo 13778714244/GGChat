@@ -16,7 +16,7 @@ namespace FrmClient.Utils
     public class SingleUtils
     {
         private static Dictionary<string, Form> openFormDict = new Dictionary<string, Form>();
-        public static List<GGGroupInfo> FriendsGroupList { get; set; }
+        public static List<GGGroup> FriendsGroupList { get; set; }
         public static string FriendsStr = "";
         public static string userImgPath = ToolUtils.substringFromLast(Application.StartupPath, @"\", 2, ConfigurationManager.AppSettings["userImgPath"].ToString());
         public static EmojiForm emojiForm = new EmojiForm();
@@ -28,9 +28,10 @@ namespace FrmClient.Utils
         public static GGUserInfo LOGINER;
         public static GGUserInfo fromUser;
         public static GGUserInfo toUser;
-        public static ShowMsgDel showMsgDelMethod;
+        //public static ShowMsgDel showMsgDelMethod;
         public static Dictionary<string, Form> chatForm = new Dictionary<string, Form>();
         public static Dictionary<GGUserInfo, MessageInfo> noReadDic = new Dictionary<GGUserInfo, MessageInfo>();
+        
 
         public static bool isIconTD = false;
         public static System.Drawing.Color Color;

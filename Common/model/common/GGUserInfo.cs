@@ -13,7 +13,7 @@ namespace Common.model
     /// 用户扩展类
     /// </summary>
     [Serializable]
-    public class GGUserInfo : UserInfo
+    public class GGUserInfo : GGUser
     {
 
         public string serverIP { get; set; }

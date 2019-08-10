@@ -9,3 +9,14 @@ E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.pdb
 E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.WinUserInfo.resources
 E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.Properties.Resources.resources
 E:\Documents\Desktop\GGChat_V1.0\Controls\obj\Debug\Controls.WinButtom.resources
+C:\Users\hp\Desktop\GGChat\Controls\bin\Debug\Controls.dll
+C:\Users\hp\Desktop\GGChat\Controls\bin\Debug\Controls.pdb
+C:\Users\hp\Desktop\GGChat\Controls\bin\Debug\Common.dll
+C:\Users\hp\Desktop\GGChat\Controls\bin\Debug\Common.pdb
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.Properties.Resources.resources
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.WinButtom.resources
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.WinUserInfo.resources
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.csproj.GenerateResource.Cache
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.dll
+C:\Users\hp\Desktop\GGChat\Controls\obj\Debug\Controls.pdb

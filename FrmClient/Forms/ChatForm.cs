@@ -26,7 +26,7 @@ namespace FrmClient
     {
         private Icon notifyIcon;
         private object selectedEmoji = 0;
-
+        public ShowMsgDel showMsgDelMethod;
         private MessageInfo toInfo = new MessageInfo() { socket = SingleUtils.LOGINER.socket, fromUser = SingleUtils.LOGINER, toUser = SingleUtils.toUser, fromId = SingleUtils.LOGINER.userId };
 
         public ChatForm(GGUserInfo fromUser, GGUserInfo toUser)
@@ -34,7 +34,7 @@ namespace FrmClient
             InitializeComponent();//选择好友私聊     
             Control.CheckForIllegalCrossThreadCalls = false;
 
-            SingleUtils.showMsgDelMethod = this.ShowMsgDelMethodImpl;
+            this.showMsgDelMethod = this.ShowMsgDelMethodImpl;
             SingleUtils.fromUser = fromUser;
             SingleUtils.toUser = toUser;
 
@@ -46,11 +46,12 @@ namespace FrmClient
 
             this.Size = new System.Drawing.Size(400, 400);
             this.Tag = chatFormKey;
-            this.Text = "你" + GGUserUtils.ShowNickAndId(SingleUtils.fromUser) + "正在和" + GGUserUtils.ShowNickAndId(SingleUtils.toUser) + "聊天";
+            this.Text = "你" + GGUserUtils.ShowNickAndId(SingleUtils.fromUser) + "正在和" + GGUserUtils.ShowNickAndId(SingleUtils.toUser) + "聊天  chatFormKey=" + chatFormKey;
 
             //表情选择面板
             SingleUtils.emojiForm.VisibleChanged += new EventHandler(this.GetEmoji);
             SingleUtils.emojiForm.Show();
+            SingleUtils.emojiForm.WindowState = FormWindowState.Minimized;
             SingleUtils.emojiForm.Visible = false;
         }
 
@@ -91,9 +92,7 @@ namespace FrmClient
         /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
-            string chatFormKey = this.Tag.ToString();
-            SingleUtils.chatForm.Remove(chatFormKey);
-            SingleUtils.showMsgDelMethod = null;
+
             this.Close();
         }
 
@@ -107,6 +106,8 @@ namespace FrmClient
             try
             {
                 selectedEmoji = ((EmojiForm)sender).Tag;
+                if (string.IsNullOrEmpty((selectedEmoji + ""))) return;
+
                 Image emoji = Image.FromFile(selectedEmoji.ToString());
                 this.msgContent.InsertImage(emoji);
                 SingleUtils.emojiForm.Tag = "";
@@ -124,7 +125,7 @@ namespace FrmClient
         public void ChatForm_Load(object sender, EventArgs e)
         {
             this.Size = new System.Drawing.Size(200, 200);
-            this.userHeadImg.Image = Image.FromFile(SingleUtils.userImgPath + SingleUtils.toUser.userImg);
+            this.userHeadImg.Image = HeadImgUtils.ShowHeadImg(SingleUtils.toUser);
             this.friendNickName.Text = SingleUtils.toUser.userNickName + "(" + SingleUtils.toUser.userId + ")";
             this.friendQQSign.Text = SingleUtils.toUser.qqSign;
             this.pictureBox1.Image = this.userHeadImg.Image;
@@ -161,7 +162,7 @@ namespace FrmClient
         {
             if (fromInfo.msgType == MsgType.私聊)
             {
-                if (fromInfo.fromId != SingleUtils.LOGINER.userId)
+                if (fromInfo.fromId != SingleUtils.LOGINER.userId && fromInfo.fromNoRead != 1)
                 {
                     SoundUtils.NewestInfoCome();
                 }
@@ -234,7 +235,9 @@ namespace FrmClient
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            string chatFormKey = this.Tag.ToString();
+            SingleUtils.chatForm.Remove(chatFormKey);
+            this.showMsgDelMethod = null;
         }
 
         /// <summary>
@@ -256,8 +259,9 @@ namespace FrmClient
         {
             int fTop = this.Top;
             int fLeft = this.Left;
-            SingleUtils.emojiForm.Visible = !SingleUtils.emojiForm.Visible;
             SingleUtils.emojiForm.Location = new Point(fLeft, fTop);
+            SingleUtils.emojiForm.Visible = !SingleUtils.emojiForm.Visible;
+            SingleUtils.emojiForm.WindowState = FormWindowState.Normal;
         }
         #endregion
 
@@ -327,6 +331,7 @@ namespace FrmClient
             //读取 未读信息
             foreach (KeyValuePair<GGUserInfo, MessageInfo> item in SingleUtils.noReadDic)
             {
+                string chatFormKey = GGUserUtils.GetChatFormKey(item.Key, SingleUtils.LOGINER);
                 MessageInfo fromInfo = item.Value;
                 this.ShowMsgDelMethodImpl(fromInfo);
             }

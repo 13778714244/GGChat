@@ -54,6 +54,7 @@
             this.btnRegister = new CCWin.SkinControl.SkinButton();
             this.skinButtom1 = new CCWin.SkinControl.SkinButton();
             this.process1 = new System.Diagnostics.Process();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStripState.SuspendLayout();
             this.panelHeadImage.SuspendLayout();
             this.textBoxPwd.SuspendLayout();
@@ -301,6 +302,7 @@
             this.skinButton1.Size = new System.Drawing.Size(63, 22);
             this.skinButton1.TabIndex = 140;
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // textBoxPwd
             // 
@@ -486,6 +488,16 @@
             this.process1.StartInfo.UserName = "";
             this.process1.SynchronizingObject = this;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(198, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 143;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.buttonLogin;
@@ -495,6 +507,7 @@
             this.BackToColor = false;
             this.BorderPalace = global::FrmClient.Properties.Resources.BackPalace1;
             this.ClientSize = new System.Drawing.Size(495, 378);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.skinButton3);
             this.Controls.Add(this.skinButton2);
             this.Controls.Add(this.panelHeadImage);
@@ -552,6 +565,7 @@
         private CCWin.SkinControl.SkinButton skinButton2;
         private CCWin.SkinControl.SkinButton skinButton3;
         private System.Diagnostics.Process process1;
+        private System.Windows.Forms.Button button1;
 
     }
 }

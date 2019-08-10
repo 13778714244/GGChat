@@ -37,7 +37,11 @@ namespace FrmClient.Forms
             this.MinimizeBox = false;
         }
 
-
+        /// <summary>
+        /// 发送添加好友信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void wuInfo_UserControlBtnAddClicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -74,16 +78,20 @@ namespace FrmClient.Forms
             List<GGUserInfo> userList = DBHelper.ConvertToExtModel<GGUserInfo>(sql);
             foreach (GGUserInfo user in userList)
             {
-                string userImg = user.userImg;
-                if (string.IsNullOrEmpty(userImg))
-                {
-                    userImg = "default.png";
-                }
-                user.headImg = Image.FromFile(SingleUtils.userImgPath + userImg);
+                user.isOnLine = true;
+                user.headImg = HeadImgUtils.ShowHeadImg(user);
                 if (cols > colCount)
                 {
                     cols = 1;
                     ++rows;
+                }
+                if (user.userId == SingleUtils.LOGINER.userId)
+                {
+                    user.userNickName = "[自己]" + user.userNickName;
+                }
+                else if (SingleUtils.FriendsStr.Contains(user.userId))
+                {
+                    user.userNickName = "[好友]" + user.userNickName;
                 }
 
                 WinUserInfo wuInfo = new WinUserInfo(user);
@@ -113,6 +121,7 @@ namespace FrmClient.Forms
             this.btnQuery_BtnClick(null, null);
             this.StartPosition = FormStartPosition.CenterScreen;
         }
+
 
     }
 }

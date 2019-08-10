@@ -36,6 +36,7 @@ namespace Common.model
         public msgStateType msgStateType { get; set; }
         public string oldGroupAutoId { get; set; }
         public string newGroupAutoId { get; set; }
+        public int fromNoRead { get; set; }
 
     }
 }

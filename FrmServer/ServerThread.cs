@@ -92,16 +92,31 @@ namespace FrmServer
                         int oldGroupAutoId = Convert.ToInt32(fromInfo.oldGroupAutoId);
                         int newGroupAutoId = Convert.ToInt32(fromInfo.newGroupAutoId);
                         int friendAutoId = Convert.ToInt32(fromInfo.toId);
-                        GGGroupInfo oldGroupInfo = ChatDBUtils.GetSingeGroupByAutoId(oldGroupAutoId);
-                        GGGroupInfo newGroupInfo = ChatDBUtils.GetSingeGroupByAutoId(newGroupAutoId);
+                        GGGroup oldGroupInfo = ChatDBUtils.GetSingeGroupByAutoId(oldGroupAutoId);
+                        GGGroup newGroupInfo = ChatDBUtils.GetSingeGroupByAutoId(newGroupAutoId);
                         GGUserInfo userInfo = ChatDBUtils.GetPerInfoByAutoId(friendAutoId);
                         ChatDBUtils.MoveGroup(oldGroupAutoId, newGroupAutoId, friendAutoId);
                         toInfo.content = "成功将好友" + GGUserUtils.ShowNickAndId(userInfo) + "从[ " + oldGroupInfo.groupName + " ] 移动到 [ " + newGroupInfo.groupName + " ]";
                         SocketUtils.SendToSingleClient(toInfo);
                     }
+                    else if (fromInfo.msgType == MsgType.用户注册)
+                    {
+                        GGUserInfo user = SerializerUtil.JsonToObject<GGUserInfo>(json);
+                        bool isSuc = ChatDBUtils.RegisterUser(user);
+
+                        if (isSuc)
+                        {
+                            toInfo.content = GGUserUtils.ShowNickAndId(user) + "注册成功";
+                        }
+                        else
+                        {
+                            toInfo.content = GGUserUtils.ShowNickAndId(user) + "注册失败";
+                        }
+                        SocketUtils.SendToSingleClient(toInfo);
+                    }
                     else if (fromInfo.msgType == MsgType.创建分组)
                     {
-                        GGGroupInfo tmpGroup = ChatDBUtils.GetGroupByName(fromInfo.content);
+                        GGGroup tmpGroup = ChatDBUtils.GetGroupByName(fromInfo.content);
                         if (tmpGroup != null)
                         {
                             toInfo.content = "分组[" + fromInfo.content + "]已存在，请重新命名";
@@ -134,7 +149,7 @@ namespace FrmServer
                     {
                         string friendAutoId = fromInfo.toId;
                         int groupAutoId = Convert.ToInt32(fromInfo.content);
-                        GGGroupInfo defaultGroup = ChatDBUtils.GetSingeGroupByAutoId(groupAutoId);
+                        GGGroup defaultGroup = ChatDBUtils.GetSingeGroupByAutoId(groupAutoId);
                         bool isSuc = ChatDBUtils.DelFriend(defaultGroup, friendAutoId);
                         //信息转发给指定客户端
                         toInfo.content = "成功删除好友" + GGUserUtils.ShowNickAndId(fromInfo.toUser);
@@ -146,7 +161,7 @@ namespace FrmServer
                         CheckDefaultGroup(fromInfo);
 
                         GGUserInfo user = ChatDBUtils.GetPerInfoByUserId(fromInfo.toId);
-                        GGGroupInfo defaultGroup = ChatDBUtils.GetDefaultGroup(fromInfo.fromId);
+                        GGGroup defaultGroup = ChatDBUtils.GetDefaultGroup(fromInfo.fromId);
                         bool isSuc = ChatDBUtils.AddFriend(defaultGroup, user.userAutoid);
                         //信息转发给指定客户端
                         toInfo.content = "成功添加" + GGUserUtils.ShowNickAndId(fromInfo.toUser) + "为好友";
@@ -154,8 +169,8 @@ namespace FrmServer
                     }
                     else if (fromInfo.msgType == MsgType.获取好友信息)
                     {
-                        List<GGGroupInfo> groupList = ChatDBUtils.GetGroupFriendsInfo(fromInfo.fromId);
-                        toInfo.content = SerializerUtil.ObjectToJson<List<GGGroupInfo>>(groupList);
+                        List<GGGroup> groupList = ChatDBUtils.GetGroupFriendsInfo(fromInfo.fromId);
+                        toInfo.content = SerializerUtil.ObjectToJson<List<GGGroup>>(groupList);
                         //将好友信息发送给制定客户端，刷新好友在线情况
                         SocketUtils.SendToSingleClient(toInfo);
                         toInfo.content = GGUserUtils.ShowNickAndId(fromInfo.fromUser) + "的好友情况如下：" + ChatDBUtils.GetPerOnlineGroupFriendsStr(fromInfo.fromId);
@@ -251,7 +266,7 @@ namespace FrmServer
         private static void CheckDefaultGroup(MessageInfo fromInfo)
         {
             GGUserInfo tmpUser = ChatDBUtils.GetPerInfoByUserId(fromInfo.fromId);
-            GGGroupInfo defaultGroup = ChatDBUtils.GetDefaultGroup(tmpUser.userId);
+            GGGroup defaultGroup = ChatDBUtils.GetDefaultGroup(tmpUser.userId);
             if (defaultGroup == null)
             {
                 ChatDBUtils.CreateGroup(tmpUser, "我的好友", true);

@@ -72,7 +72,7 @@
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(82, 36);
             this.btnQuery.TabIndex = 14;
-            this.btnQuery.BtnClick += new Controls.WinButtom.BtnClickEvent(this.btnQuery_BtnClick);
+            this.btnQuery.BtnClick += new Controls.WinButtom.BtnClickEvent(this.btnQuery_BtnClick); 
             // 
             // groupBox2
             // 

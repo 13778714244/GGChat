@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.Serialization;
-using Common.model;
 using FrmServer.Utils;
 using Common.enums;
 using Common.Utils;
 using Common.Services;
+using Common.model;
 
 
 
@@ -98,11 +98,12 @@ namespace FrmServer
                             //上线提醒其他客户端
                             toInfo.msgType = MsgType.上线;
                             toInfo.fromId = user.userId;
-                            List<GGGroupInfo> group = ChatDBUtils.GetGroupFriendsInfo(user.userId);
+                            //获取好友列表
+                            List<GGGroup> group = ChatDBUtils.GetGroupFriendsInfo(user.userId);
                             List<GGUserInfo> friendList = ChatDBUtils.GetFriendsInfo(user.userId);
                             //同时通知自己
                             friendList.Add(user);
-                            toInfo.content = SerializerUtil.ObjectToJson<List<GGGroupInfo>>(group);
+                            toInfo.content = ChatDBUtils.GetPerFriendsStr(user.userId);
                             SocketUtils.SendToOnlineFriendClients(OnlineUserUtils.GetAllOnlineClients(), friendList, toInfo);
                             //SocketUtils.SendToMultiClients(OnlineUserUtils.GetAllOnlineClients(), toInfo);
 
@@ -110,6 +111,12 @@ namespace FrmServer
                             //显示到客户端
                             ChatUtils.AppendMsgToServerChatList(this.serverChatRecords, toInfo);
                         }
+                    }
+                    else if (userList.Count == 0)
+                    {
+                        toInfo.msgType = MsgType.登陆失败;
+                        toInfo.content = "登陆失败，未找到账号";
+                        SocketUtils.SendToSingleClient(toInfo);
                     }
                     else
                     {
@@ -587,7 +594,6 @@ namespace FrmServer
         {
             Application.Exit();
         }
-
-
+         
     }
 }

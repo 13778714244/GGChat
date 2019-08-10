@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Common.model
 {
     [Serializable]
-    public class UserInfo
+    public class GGUser
     {
         public int userAutoid { get; set; }
         public string userId { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Common.model
 {
     [Serializable]
-    public class GGGroupInfo
+    public class GGGroup
     {
         public int groupAutoId { get; set; }
 
