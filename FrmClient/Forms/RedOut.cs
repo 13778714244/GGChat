@@ -11,22 +11,25 @@ using System.Windows.Forms;
 
 namespace FrmClient
 {
-    public partial class RedPacketForm : Form
+    public partial class RedOut : Form
     {
-        public RedPacketForm()
+
+        public RedOut()
         {
             InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.TopMost = true;
+
         }
 
-        private Random r = new Random();
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            string str = string.Format("恭喜你，抢到了{0}元的红包", r.Next(1, 10) + Convert.ToDecimal(r.NextDouble().ToString().Substring(0, 4)));
-            MessageBox.Show(str);
             this.Close();
         }
+
     }
 }

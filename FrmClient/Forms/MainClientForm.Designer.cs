@@ -51,7 +51,7 @@
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.toolstripButton_mainMenu = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.wp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.skinButton_State = new CCWin.SkinControl.SkinButton();
             this.iconHitTimer = new System.Windows.Forms.Timer(this.components);
@@ -66,6 +66,7 @@
             this.picHeadImg = new System.Windows.Forms.PictureBox();
             this.lblQQSign = new System.Windows.Forms.Label();
             this.lblNickName = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.skinContextMenuStrip_main.SuspendLayout();
             this.skinToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -146,13 +147,13 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(227, 24);
-            this.toolStripMenuItem2.Text = "toolStripMenuItem2"; 
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(233, 26);
+            this.toolStripMenuItem2.Text = "toolStripMenuItem2";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(227, 24);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(233, 26);
             this.toolStripMenuItem3.Text = "toolStripMenuItem3";
             // 
             // 删除好友ToolStripMenuItem1
@@ -189,14 +190,14 @@
             this.大头像ToolStripMenuItem.CheckOnClick = true;
             this.大头像ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.大头像ToolStripMenuItem.Name = "大头像ToolStripMenuItem";
-            this.大头像ToolStripMenuItem.Size = new System.Drawing.Size(123, 24);
+            this.大头像ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.大头像ToolStripMenuItem.Text = "大头像";
             // 
             // 小头像ToolStripMenuItem
             // 
             this.小头像ToolStripMenuItem.CheckOnClick = true;
             this.小头像ToolStripMenuItem.Name = "小头像ToolStripMenuItem";
-            this.小头像ToolStripMenuItem.Size = new System.Drawing.Size(123, 24);
+            this.小头像ToolStripMenuItem.Size = new System.Drawing.Size(129, 26);
             this.小头像ToolStripMenuItem.Text = "小头像";
             // 
             // 修改密码ToolStripMenuItem
@@ -279,7 +280,7 @@
             this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolstripButton_mainMenu,
             this.toolStripButton1,
-            this.toolStripButton3,
+            this.wp,
             this.toolStripButton4});
             this.skinToolStrip1.Location = new System.Drawing.Point(4, 622);
             this.skinToolStrip1.Name = "skinToolStrip1";
@@ -318,14 +319,15 @@
             this.toolStripButton1.Text = "toolStripButton2";
             this.toolStripButton1.ToolTipText = "打开系统设置";
             // 
-            // toolStripButton3
+            // wp
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(24, 21);
-            this.toolStripButton3.Text = "我的网盘";
+            this.wp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.wp.Image = ((System.Drawing.Image)(resources.GetObject("wp.Image")));
+            this.wp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.wp.Name = "wp";
+            this.wp.Size = new System.Drawing.Size(24, 21);
+            this.wp.Text = "我的网盘";
+            this.wp.Click += new System.EventHandler(this.wp_Click);
             // 
             // toolStripButton4
             // 
@@ -491,6 +493,12 @@
             this.lblNickName.TabIndex = 137;
             this.lblNickName.Text = "昵称";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            // 
             // MainClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -510,7 +518,6 @@
             this.Text = "";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainClientForm_FormClosing);
             this.Load += new System.EventHandler(this.MainClientForm_Load);
-            this.Click += new System.EventHandler(this.MainForm_Click);
             this.skinContextMenuStrip_main.ResumeLayout(false);
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
@@ -544,7 +551,7 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolstripButton_mainMenu;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton wp;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private CCWin.SkinControl.SkinToolStrip skinToolStrip1;
         public System.Windows.Forms.NotifyIcon notifyIcon1;
@@ -564,5 +571,6 @@
         private System.Windows.Forms.ToolStripMenuItem 删除好友ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Timer timer1;
     }
 }

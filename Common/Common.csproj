@@ -52,11 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="enums\EndPointEnum.cs" />
-    <Compile Include="enums\msgStateType.cs" />
     <Compile Include="model\NoReadMsg.cs" />
     <Compile Include="model\ChatRecord.cs" />
     <Compile Include="model\common\GGUserInfo.cs" />
     <Compile Include="model\common\MessageInfo.cs" />
+    <Compile Include="model\Records.cs" />
     <Compile Include="services\ChatDBUtils.cs" />
     <Compile Include="Utils\DefaultUtils.cs" />
     <Compile Include="Utils\FileUtils.cs" />

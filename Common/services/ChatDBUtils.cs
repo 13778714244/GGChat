@@ -224,6 +224,11 @@ namespace Common.Services
             return singleUser[0];
         }
 
+        /// <summary>
+        /// 添加离线信息
+        /// </summary>
+        /// <param name="fromInfo"></param>
+        /// <returns></returns>
         public static bool AddOfflineMsgToClient(MessageInfo fromInfo)
         {
             //私发离线信息                            
@@ -236,6 +241,27 @@ namespace Common.Services
                                 fromInfo.content,
                                 DateTime.Now,
                                 0
+                            };
+            int row = DBHelper.Excute(sql, param);
+
+            return row > 0 ? true : false;
+        }
+
+        /// <summary>
+        /// 添加聊天记录
+        /// </summary>
+        /// <param name="fromInfo"></param>
+        /// <returns></returns>
+        public static bool AddRecords(MessageInfo fromInfo)
+        {
+            //私发离线信息                            
+            string sql = string.Format("INSERT INTO [GGChatDB].[dbo].[{0}]([sendId],[receiveId],[msgType],[content],[datetime])VALUES(@sendId,  @receiveId, @msgType,  @content,  @datetime )", DBTUtils.DBT_ChatRecord);
+            object[] param = { 
+                                 fromInfo.fromId,
+                                fromInfo.toId,
+                                fromInfo.msgType,
+                                fromInfo.content,                                
+                                fromInfo.dateTime                                
                             };
             int row = DBHelper.Excute(sql, param);
 

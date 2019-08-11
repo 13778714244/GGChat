@@ -32,8 +32,7 @@ namespace Common.model
         public string excludeUserIds { get; set; }
         public byte[] buffer { get; set; }
         public int fileLength { get; set; }
-
-        public msgStateType msgStateType { get; set; }
+         
         public string oldGroupAutoId { get; set; }
         public string newGroupAutoId { get; set; }
         public int fromNoRead { get; set; }

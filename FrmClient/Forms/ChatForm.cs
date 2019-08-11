@@ -3,6 +3,7 @@ using Common;
 using Common.enums;
 using Common.model;
 using Common.Utils;
+using FrmClient.Forms;
 using FrmClient.Utils;
 using JustLib.Controls;
 using OMCS.Passive;
@@ -27,6 +28,7 @@ namespace FrmClient
         private Icon notifyIcon;
         private object selectedEmoji = 0;
         public ShowMsgDel showMsgDelMethod;
+        private Random r = new Random();
         private MessageInfo toInfo = new MessageInfo() { socket = SingleUtils.LOGINER.socket, fromUser = SingleUtils.LOGINER, toUser = SingleUtils.toUser, fromId = SingleUtils.LOGINER.userId };
 
         public ChatForm(GGUserInfo fromUser, GGUserInfo toUser)
@@ -105,12 +107,12 @@ namespace FrmClient
         {
             try
             {
-                selectedEmoji = ((EmojiForm)sender).Tag;
-                if (string.IsNullOrEmpty((selectedEmoji + ""))) return;
+                selectedEmoji = (sender as EmojiForm).Tag;
+                if (string.IsNullOrEmpty((selectedEmoji + "")) || selectedEmoji == null) return;
 
-                Image emoji = Image.FromFile(selectedEmoji.ToString());
+                Image emoji = selectedEmoji as Image;
                 this.msgContent.InsertImage(emoji);
-                SingleUtils.emojiForm.Tag = "";
+                SingleUtils.emojiForm.Tag = null;
             }
             catch (Exception ex)
             {
@@ -130,7 +132,7 @@ namespace FrmClient
             this.friendQQSign.Text = SingleUtils.toUser.qqSign;
             this.pictureBox1.Image = this.userHeadImg.Image;
 
-            SingleUtils.isIconTD = false;
+            SingleUtils.isQQTD = false;
             this.Width = this.MinimumSize.Width;
             this.Height = 700;
             this.msgContent.AppendText(SingleUtils.LOGINER.userNickName + "对" + SingleUtils.toUser.userNickName + "说：" + new Random().Next(1, 100));
@@ -168,6 +170,32 @@ namespace FrmClient
                 }
                 ChatRecordUtils.AppendMsgToClient(this.chatRecords, fromInfo);
             }
+            if (fromInfo.msgType == MsgType.系统消息)
+            {
+                SoundUtils.SystemSound(); 
+                ChatRecordUtils.AppendMsgToClient(this.chatRecords, fromInfo);
+            }
+            else if (fromInfo.msgType == MsgType.私发红包)
+            {
+                Thread thread = new Thread((obj) =>
+                {
+                    MessageInfo tmpFromInfo = obj as MessageInfo;
+                    int money = Convert.ToInt32(tmpFromInfo.content);
+                    SingleUtils.redForm = new RedIn();
+                    SingleUtils.redForm.pictureBox1.Click += (sender, e) =>
+                    {
+                        string str = string.Format("收到{0}发来的{1}元的红包", GGUserUtils.ShowNickAndId(tmpFromInfo.fromUser), r.Next(1, 10));
+                        toInfo.content = str;
+                        toInfo.dateTime = DateTime.Now;
+                        ChatRecordUtils.AppendMsgToClient(this.chatRecords, toInfo);
+                        SingleUtils.redForm.Close();
+                        this.redBtn.Enabled = true;
+                    };
+                    SingleUtils.redForm.Text = "金额=" + money;
+                    Application.Run(SingleUtils.redForm);
+                }) { IsBackground = true };
+                thread.Start(fromInfo);
+            }
             else if (fromInfo.msgType == MsgType.私发抖动)
             {
                 ChatRecordUtils.AppendMsgToClient(this.chatRecords, fromInfo);
@@ -190,8 +218,7 @@ namespace FrmClient
                 return;
             }
             int index = count;
-            string img = ToolUtils.GetResourcePath(@"\Images\emotion\" + (index + 1) + ".gif");
-            Image image = Image.FromFile(img);
+            Image image = ToolUtils.GetEmotion((index + 1) + ".gif");
             msgContent.InsertImage(image);
 
         }
@@ -228,10 +255,6 @@ namespace FrmClient
         }
 
 
-        private void ChatForm_Click(object sender, EventArgs e)
-        {
-            //this.TopMost = true;
-        }
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -254,7 +277,12 @@ namespace FrmClient
             ChatRecordUtils.AppendMsgToClient(this.chatRecords, toInfo);
         }
 
-        #region 显示/隐藏表情栏
+        /// <summary>
+        ///  显示/隐藏表情栏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void toolStripButtonEmotion_Click(object sender, EventArgs e)
         {
             int fTop = this.Top;
@@ -263,12 +291,16 @@ namespace FrmClient
             SingleUtils.emojiForm.Visible = !SingleUtils.emojiForm.Visible;
             SingleUtils.emojiForm.WindowState = FormWindowState.Normal;
         }
-        #endregion
 
 
 
 
-        #region 截屏
+        /// <summary>
+        /// 截屏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             int width = Screen.PrimaryScreen.Bounds.Width;
@@ -280,50 +312,6 @@ namespace FrmClient
             }
             Image smallImg = ImageUtils.PercentImage(bit);
             this.msgContent.InsertImage(smallImg);
-        }
-        #endregion
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (IsSocketConnected(SingleUtils.LOGINER.socket))
-            {
-                this.gifBox_wait.Visible = false;
-            }
-            else
-            {
-                this.gifBox_wait.Visible = true;
-
-            }
-        }
-
-
-        private bool IsSocketConnected(Socket client)
-        {
-            bool blockingState = client.Blocking;
-            try
-            {
-                byte[] tmp = new byte[1];
-                client.Blocking = false;
-                client.Send(tmp, 0, 0);
-                return true;
-            }
-            catch (SocketException e)
-            {
-                // 产生 10035 == WSAEWOULDBLOCK 错误，说明被阻止了，但是还是连接的
-                if (e.NativeErrorCode.Equals(10035))
-                    return false;
-                else
-                    return true;
-            }
-            finally
-            {
-                client.Blocking = blockingState;    // 恢复状态
-            }
-        }
-
-        private void ChatForm_Activated(object sender, EventArgs e)
-        {
-
         }
 
         private void ChatForm_Shown(object sender, EventArgs e)
@@ -339,29 +327,99 @@ namespace FrmClient
             SingleUtils.noReadDic.Clear();
         }
 
+        /// <summary>
+        /// 选择字体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolFont_Click(object sender, EventArgs e)
         {
-            this.colorDialog1.ShowDialog();
-            SingleUtils.Color = this.colorDialog1.Color;
-
-
             this.fontDialog1.ShowDialog();
             SingleUtils.Font = this.fontDialog1.Font;
 
             this.msgContent.SelectAll();
             this.msgContent.SelectionFont = SingleUtils.Font;
+            this.msgContent.Select(0, 0);
+        }
+
+
+        /// <summary>
+        /// 发送红包
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            this.redBtn.Enabled = false;
+            RedOut redOut = new RedOut();
+            redOut.Show();
+            redOut.sendBtn.Click += (paramSender, paramE) =>
+            {
+                RedOut tmpRedOut = (paramSender as Button).Parent.Parent as RedOut;
+
+                double money = Double.Parse(redOut.money.Text.Trim());
+
+
+                toInfo.msgType = MsgType.私发红包;
+                toInfo.content = money + "";
+                SocketUtils.SendToSingleClient(toInfo);
+
+                toInfo.content = GGUserUtils.ShowNickAndId(SingleUtils.LOGINER) + "给" + GGUserUtils.ShowNickAndId(SingleUtils.toUser) + "发了一个" + money + "元的红包";
+                ChatRecordUtils.AppendMsgToClient(this.chatRecords, toInfo);
+
+                tmpRedOut.Close();
+                this.redBtn.Enabled = true;
+            };
+            redOut.button2.Click += (paramSender, paramE) =>
+            {
+                this.redBtn.Enabled = true;
+            };
+            int x = this.Left + (this.chatRecords.Width - redOut.Width) / 2;
+            int y = this.Top + (this.chatRecords.Height) / 2;
+            redOut.Location = new Point(x, y);
+
+        }
+
+
+        /// <summary>
+        /// 红包回调
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void pictureBox1_Click0(object sender, EventArgs e)
+        {
+            string str = string.Format("恭喜你，抢到了{0}元的红包", r.Next(1, 10) + Convert.ToDecimal(r.NextDouble().ToString().Substring(0, 4)));
+            toInfo.content = str;
+            toInfo.dateTime = DateTime.Now;
+            ChatRecordUtils.AppendMsgToClient(this.chatRecords, toInfo);
+            SingleUtils.redForm.Close();
+            this.redBtn.Enabled = true;
+        }
+
+        /// <summary>
+        /// 选择颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.ShowDialog();
+            SingleUtils.Color = this.colorDialog1.Color;
+
+            this.msgContent.SelectAll();
             this.msgContent.SelectionColor = (SingleUtils.Color);
             this.msgContent.Select(0, 0);
         }
 
-        private void skinButton1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ShowChatForm();
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            new RecordFrm().ShowDialog();
         }
 
     }

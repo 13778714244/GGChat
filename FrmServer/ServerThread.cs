@@ -87,6 +87,11 @@ namespace FrmServer
                       dateTime = DateTime.Now
                   };
 
+
+                    if (!string.IsNullOrEmpty(fromInfo.toId) && OnlineUserUtils.CheckClientIsOnline(fromInfo.toId) && true)
+                    {
+                        toInfo.socket = OnlineUserUtils.GetSingleOnlineClient(fromInfo.toId).socket;
+                    }
                     if (fromInfo.msgType == MsgType.移动好友)
                     {
                         int oldGroupAutoId = Convert.ToInt32(fromInfo.oldGroupAutoId);
@@ -98,6 +103,29 @@ namespace FrmServer
                         ChatDBUtils.MoveGroup(oldGroupAutoId, newGroupAutoId, friendAutoId);
                         toInfo.content = "成功将好友" + GGUserUtils.ShowNickAndId(userInfo) + "从[ " + oldGroupInfo.groupName + " ] 移动到 [ " + newGroupInfo.groupName + " ]";
                         SocketUtils.SendToSingleClient(toInfo);
+                    }
+                    else if (fromInfo.msgType == MsgType.私发红包)
+                    {
+                        if (OnlineUserUtils.CheckClientIsOnline(fromInfo.toId))
+                        {
+                            SocketUtils.SendToSingleClient(toInfo);
+                        }
+                        toInfo.content = GGUserUtils.ShowNickAndId(fromInfo.fromUser) + "给" + GGUserUtils.ShowNickAndId(fromInfo.toUser) + "发了" + fromInfo.content + "元的红包";
+                    }
+                    else if (fromInfo.msgType == MsgType.私聊)
+                    {
+                        if (OnlineUserUtils.CheckClientIsOnline(fromInfo.toId))
+                        {
+                            //信息转发给指定客户端
+                            SocketUtils.SendToSingleClient(toInfo);
+                            //添加聊天记录
+                            ChatDBUtils.AddRecords(fromInfo);
+                        }
+                        else
+                        {
+                            //添加离线信息到数据库
+                            ChatDBUtils.AddOfflineMsgToClient(fromInfo);
+                        }
                     }
                     else if (fromInfo.msgType == MsgType.用户注册)
                     {
@@ -214,23 +242,6 @@ namespace FrmServer
                     {
                         //信息分发给其他客户端
                         SocketUtils.SendToMultiClients(OnlineUserUtils.GetAllOnlineClients(), toInfo);
-                    }
-                    else if (fromInfo.msgType == MsgType.私聊)
-                    {
-                        toInfo.fromUser = OnlineUserUtils.GetSingleOnlineClient(fromInfo.fromId);
-                        if (OnlineUserUtils.CheckClientIsOnline(fromInfo.toId))
-                        {
-                            toInfo.toUser = OnlineUserUtils.GetSingleOnlineClient(fromInfo.toId);
-                            toInfo.socket = toInfo.toUser.socket;
-                            //信息转发给指定客户端
-                            SocketUtils.SendToSingleClient(toInfo);
-                        }
-                        else
-                        {
-                            //添加离线信息到数据库
-                            ChatDBUtils.AddOfflineMsgToClient(fromInfo);
-                        }
-
                     }
                     else if (fromInfo.msgType == MsgType.群聊)
                     {

@@ -25,27 +25,36 @@ namespace FrmClient.Utils
         /// <param name="isRtf"></param>
         public static void AppendMsgToClient(RtfRichTextBox chatRecords, MessageInfo fromInfo)
         {
-            int index = fromInfo.fromId == SingleUtils.LOGINER.userId ? 0 : 1; 
-            chatRecords.AppendTextAsRtf(string.Format("{0}", fromInfo.dateTime), ChatRecordUtils.GetFont(index), ChatRecordUtils.GetColor(index));
-            chatRecords.AppendText(Environment.NewLine);
-            if (isRtf)
+            try
             {
-                try
+                bool isSys = fromInfo.msgType == MsgType.系统消息 ? true : false;
+                int index = fromInfo.fromId == SingleUtils.LOGINER.userId ? 1 : 0;
+                chatRecords.AppendTextAsRtf(string.Format("{0}", fromInfo.dateTime), ChatRecordUtils.GetFont(index), ChatRecordUtils.GetColor(index));
+                chatRecords.AppendText(Environment.NewLine);
+                if (isRtf)
                 {
-                    chatRecords.AppendRtf(fromInfo.content);
+                    try
+                    {
+                        if (isSys)
+                            chatRecords.AppendText("【" + fromInfo.msgType + "】：");
+
+                        chatRecords.AppendRtf(fromInfo.content);
+                    }
+                    catch (Exception ex)
+                    {
+                        chatRecords.AppendText(fromInfo.content);
+                        chatRecords.AppendText(Environment.NewLine);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
                     chatRecords.AppendText(fromInfo.content);
-                    chatRecords.AppendText(Environment.NewLine);
                 }
+                chatRecords.AppendText(Environment.NewLine);
+                chatRecords.ScrollToCaret();
             }
-            else
-            {
-                chatRecords.AppendText(fromInfo.content);
-            }
-            chatRecords.AppendText(Environment.NewLine);
-            chatRecords.ScrollToCaret();
+            catch (Exception ex)
+            { }
         }
 
 

@@ -88,11 +88,20 @@ namespace FrmClient.Utils
             {
                 path = SingleUtils.userImgPath + name + "_" + HeadImgUtils.ONLINE + extend;
             }
-            else
+            else if (!user.isOnLine)
             {
                 path = SingleUtils.userImgPath + name + "_" + HeadImgUtils.OFFLINE + extend;
             }
-            return Image.FromFile(path);
+            try
+            {
+                return Image.FromFile(path);
+            }
+            catch (Exception)
+            {
+                path = SingleUtils.userImgPath + DefaultUtils.headImg;
+                return Image.FromFile(path);
+            }
+
         }
     }
 }

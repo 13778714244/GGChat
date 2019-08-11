@@ -78,26 +78,18 @@ namespace Common.Utils
         {
             try
             {
-                string info = SerializerUtil.ObjectToJson<MessageInfo>(messageInfo);
-                byte[] bytes = Encoding.UTF8.GetBytes(info);
-                if (messageInfo.excludeUserIds == null)
-                {
-                    foreach (GGUserInfo user in onLineUser.Values)
-                    {
-                        user.socket.Send(bytes);
-                    }
-                }
-                else
-                {
-                    List<string> excludeUserList = messageInfo.excludeUserIds.Split('|').ToList<string>();
-                    foreach (GGUserInfo user in onLineUser.Values)
-                    {
-                        if (excludeUserList.Contains(user.userId)) continue;
+                messageInfo.excludeUserIds = messageInfo.excludeUserIds == null ? "" : messageInfo.excludeUserIds;
+                List<string> excludeUserList = messageInfo.excludeUserIds.Split('|').ToList<string>();
 
-                        user.socket.Send(bytes);
-                    }
-                }
+                foreach (GGUserInfo user in onLineUser.Values)
+                {
+                    if (excludeUserList.Contains(user.userId)) continue;
 
+                    messageInfo.toUser = user;
+                    string info = SerializerUtil.ObjectToJson<MessageInfo>(messageInfo);
+                    byte[] bytes = Encoding.UTF8.GetBytes(info);
+                    user.socket.Send(bytes);
+                }
             }
             catch (Exception ex)
             {
@@ -144,31 +136,30 @@ namespace Common.Utils
         /// <param name="messageInfo"></param>
         public static void SendFileToMutilClient(Dictionary<string, GGUserInfo> onLineUser, MessageInfo messageInfo)
         {
-
-            List<byte> list = new List<byte>();
-            byte[] byteMsg = ToolUtils.StrToByte(messageInfo.content);
-
-            list.Add(Convert.ToByte(messageInfo.msgType));//标记为:信息类型
-            if (messageInfo.fileType != 0)
-            {
-                list.Add(Convert.ToByte(messageInfo.fileType));//标记位:文件类型
-            }
-            if (messageInfo.buffer != null)
-            {
-                list.AddRange(messageInfo.buffer);//发送的是字节
-            }
-            else
-            {
-                list.AddRange(byteMsg);//发送的是字符串
-            }
-            byte[] sendMsg = list.ToArray();
-
-            //发送方式
-            if (messageInfo.buffer != null)//发送文件
+            if (false)
             {
                 foreach (GGUserInfo user in onLineUser.Values)
                 {
+
+                    MessageInfo toInfo = new MessageInfo() { msgType = messageInfo.msgType, buffer = messageInfo.buffer, fileType = messageInfo.fileType, dateTime = DateTime.Now };
+                    string info = SerializerUtil.ObjectToJson<MessageInfo>(messageInfo);
+                    info = SerializerUtil.ObjectToJson<byte[]>(messageInfo.buffer);
+                    byte[] bytes = Encoding.UTF8.GetBytes(info);
+                    user.socket.Send(bytes);
+                }
+            }
+            else
+            {
+                List<byte> list = new List<byte>();
+                list.Add(Convert.ToByte(messageInfo.msgType));//标记为:信息类型 
+                list.Add(Convert.ToByte(messageInfo.fileType));//标记位:文件类型 
+                list.AddRange(messageInfo.buffer);//发送的是文件字节   
+                byte[] sendMsg = list.ToArray();
+                //发送文件 
+                foreach (GGUserInfo user in onLineUser.Values)
+                {
                     user.socket.Send(sendMsg, 0, messageInfo.fileLength + 2, SocketFlags.None);
+                    //user.socket.Send(messageInfo.buffer, 0, messageInfo.fileLength  , SocketFlags.None);
                 }
             }
         }

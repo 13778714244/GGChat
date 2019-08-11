@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,6 +58,12 @@
     <Compile Include="WinButtom.Designer.cs">
       <DependentUpon>WinButtom.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinChatForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinChatForm.Designer.cs">
+      <DependentUpon>WinChatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinUserInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,12 +74,18 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="WinButtom.resx">
       <DependentUpon>WinButtom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinChatForm.resx">
+      <DependentUpon>WinChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinUserInfo.resx">
       <DependentUpon>WinUserInfo.cs</DependentUpon>

@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Images\Icon\qq.ico</ApplicationIcon>
+    <ApplicationIcon>qq.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin, Version=12.8.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -68,6 +68,12 @@
     <Compile Include="Forms\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmFileList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFileList.Designer.cs">
+      <DependentUpon>frmFileList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NoRead.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,18 @@
     <Compile Include="Forms\MainClientForm.Designer.cs">
       <DependentUpon>MainClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RecordFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RecordFrm.Designer.cs">
+      <DependentUpon>RecordFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RedOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RedOut.Designer.cs">
+      <DependentUpon>RedOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RegisterFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,11 +136,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\RedPacketForm.cs">
+    <Compile Include="Forms\RedIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RedPacketForm.Designer.cs">
-      <DependentUpon>RedPacketForm.cs</DependentUpon>
+    <Compile Include="Forms\RedIn.Designer.cs">
+      <DependentUpon>RedIn.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserInfoForm.cs">
       <SubType>Form</SubType>
@@ -136,6 +154,9 @@
     <Compile Include="Utils\SingleUtils.cs" />
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFileList.resx">
+      <DependentUpon>frmFileList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NoRead.resx">
       <DependentUpon>NoRead.cs</DependentUpon>
@@ -151,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainClientForm.resx">
       <DependentUpon>MainClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecordFrm.resx">
+      <DependentUpon>RecordFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RedOut.resx">
+      <DependentUpon>RedOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterFrm.resx">
       <DependentUpon>RegisterFrm.cs</DependentUpon>
@@ -171,8 +198,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\RedPacketForm.resx">
-      <DependentUpon>RedPacketForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\RedIn.resx">
+      <DependentUpon>RedIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserInfoForm.resx">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
@@ -1030,6 +1057,7 @@
     <Content Include="Images\userImg\7.png" />
     <Content Include="Images\userImg\8.png" />
     <Content Include="Images\userImg\9.png" />
+    <Content Include="qq.ico" />
     <Content Include="Resources\None64.ico" />
     <None Include="Resources\group.ico" />
     <None Include="Resources\171.gif" />

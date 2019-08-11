@@ -26,7 +26,7 @@ namespace Common.Utils
         /// <returns></returns>
         public static void NewestInfoCome()
         {
-            string filePath = ToolUtils.substringFromLast(Application.StartupPath, @"\", 3, @"\FrmClient\Audio\msg.wav");
+            string filePath = ToolUtils.GetAudioPath("msg.wav");
             SoundPlayer player = new SoundPlayer(filePath);
             player.Play();//这个方法只播放一遍
             //player.PlayLooping();//这个方法循环播放
@@ -40,7 +40,7 @@ namespace Common.Utils
         /// <returns></returns>
         public static void SystemSound()
         {
-            string filePath = ToolUtils.substringFromLast(Application.StartupPath, @"\", 3, @"\FrmClient\Audio\system.wav");
+            string filePath = ToolUtils.GetAudioPath("system.wav");
             SoundPlayer player = new SoundPlayer(filePath);
             player.Play();//这个方法只播放一遍
             //player.PlayLooping();//这个方法循环播放
@@ -55,7 +55,7 @@ namespace Common.Utils
         public static void playSound(string msg, EndPointEnum playSource = EndPointEnum.无)
         {
             SpeechVoiceSpeakFlags flag = SpeechVoiceSpeakFlags.SVSFDefault;
-            SpVoice voice  = new SpVoice();
+            SpVoice voice = new SpVoice();
             voice.Voice = voice.GetVoices().Item(0);
             if (playSource != EndPointEnum.无)
             {

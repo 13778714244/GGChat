@@ -10,17 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Configuration;
+using FrmClient.Forms;
+using System.Drawing;
 
 namespace FrmClient.Utils
 {
     public class SingleUtils
     {
+        public static frmFileList frmFileList = new frmFileList();
+        public static List<MessageInfo> fileByteList = new List<MessageInfo>(); 
         private static Dictionary<string, Form> openFormDict = new Dictionary<string, Form>();
-        public static List<GGGroup> FriendsGroupList { get; set; }
+        public static List<GGGroup> FriendsGroupList = null;
         public static string FriendsStr = "";
-        public static string userImgPath = ToolUtils.substringFromLast(Application.StartupPath, @"\", 2, ConfigurationManager.AppSettings["userImgPath"].ToString());
+        public static string userImgPath = string.Format(Application.StartupPath + "" + ConfigurationManager.AppSettings["userImgPath"]);// ToolUtils.substringFromLast(Application.StartupPath, @"\", 2, ConfigurationManager.AppSettings["userImgPath"].ToString());
         public static EmojiForm emojiForm = new EmojiForm();
-        public static RedPacketForm redForm = new RedPacketForm();
+        public static RedIn redForm = null;
         public static IPAddress address;
         public static int port;
         public static Socket serverSocket;
@@ -28,12 +32,13 @@ namespace FrmClient.Utils
         public static GGUserInfo LOGINER;
         public static GGUserInfo fromUser;
         public static GGUserInfo toUser;
-        //public static ShowMsgDel showMsgDelMethod;
+        public static ChatForm MainChatForm = null;
         public static Dictionary<string, Form> chatForm = new Dictionary<string, Form>();
         public static Dictionary<GGUserInfo, MessageInfo> noReadDic = new Dictionary<GGUserInfo, MessageInfo>();
-        
 
-        public static bool isIconTD = false;
+
+        public static bool isQQTD = false; 
+        public static bool isWPTD = false;
         public static System.Drawing.Color Color;
         public static System.Drawing.Font Font;
 
@@ -42,44 +47,6 @@ namespace FrmClient.Utils
             if (!SingleUtils.chatForm.ContainsKey(key))
             {
                 SingleUtils.chatForm.Add(key, chatForm);
-            }
-        }
-        /// <summary>
-        /// 打开窗口
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="form"></param>
-        /// <param name="action"></param>
-        public static void OpenForm(string key, Form pForm)
-        {
-            if (SingleUtils.openFormDict.ContainsKey(key))
-            {
-                Form form = SingleUtils.openFormDict[key];
-                form.Show();
-            }
-            else
-            {
-                SingleUtils.openFormDict.Add(key, pForm);
-                pForm.Show();
-            }
-        }
-
-        /// <summary>
-        /// 关闭窗口
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="form"></param>
-        public static void CloseForm(string key, Form pForm)
-        {
-            if (SingleUtils.openFormDict.ContainsKey(key))
-            {
-                Form form = SingleUtils.openFormDict[key];
-                SingleUtils.openFormDict.Remove(key);
-                form.Close();
-            }
-            else
-            {
-                pForm.Close();
             }
         }
 

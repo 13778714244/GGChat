@@ -17,7 +17,19 @@ namespace FrmClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+
+            Form loginForm = new LoginForm();
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            {
+                string name = p.ProcessName;
+
+                if (name == "FrmClient.exe")
+                {
+                    // p.Kill();
+                }
+            }
+
+            Application.Run(loginForm);
         }
     }
 }

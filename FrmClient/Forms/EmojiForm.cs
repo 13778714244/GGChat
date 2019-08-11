@@ -60,8 +60,7 @@ namespace FrmClient
                     for (int j = 0; j < rows; j++)
                     {
                         index++;
-                        string imgPath = ToolUtils.GetRootPath(@"\Images\Emotion\" + index + ".gif");
-                        Image img = Image.FromFile(imgPath);
+                        Image img = ToolUtils.GetEmotion(index + ".gif");
                         //g.DrawImage(img, i * padding, j * padding, imgSize, imgSize);
                         //复制图片副本
                         Bitmap bmp = new Bitmap(img.Width, img.Height, PixelFormat.Format32bppArgb);
@@ -98,8 +97,8 @@ namespace FrmClient
         /// <param name="e"></param>
         private void SelectedEmoj(object sender, EventArgs e)
         {
-            string imgPath = ToolUtils.GetRootPath(@"\Images\Emotion\" + selecIndex + ".gif");
-            this.Tag = imgPath;
+            Image emojiIcon = ToolUtils.GetEmotion(selecIndex + ".gif");
+            this.Tag = emojiIcon;
             this.Text = this.Tag.ToString();
             this.Visible = false;
         }
@@ -131,8 +130,7 @@ namespace FrmClient
 
                 selecIndex = (curCol - 1) * rows + curRow;
 
-                string imgPath = ToolUtils.GetRootPath(@"\Images\Emotion\" + selecIndex + ".gif");
-                Image bigImg = Image.FromFile(imgPath);
+                Image bigImg = ToolUtils.GetEmotion(selecIndex + ".gif");
 
                 if (curCol >= 9)
                 {
@@ -155,7 +153,7 @@ namespace FrmClient
             catch (Exception)
             {
             }
-        } 
+        }
 
         private void EmojiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -165,8 +163,8 @@ namespace FrmClient
 
         private void emoji_Click(object sender, EventArgs e)
         {
-            string imgPath = ToolUtils.GetRootPath(@"\Images\Emotion\" + selecIndex + ".gif");
-            this.Tag = imgPath;
+            Image emojiIcon = ToolUtils.GetEmotion( selecIndex + ".gif");
+            this.Tag = emojiIcon;
             this.Text = this.Tag.ToString();
             this.Visible = false;
         }

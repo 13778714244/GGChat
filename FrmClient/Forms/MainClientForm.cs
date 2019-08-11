@@ -61,78 +61,108 @@ namespace FrmClient
             {
                 try
                 {
-                    string json = ToolUtils.GetString(SingleUtils.LOGINER.socket);
-                    MessageInfo fromInfo = SerializerUtil.JsonToObject<MessageInfo>(json);
-                    if (fromInfo.msgType == MsgType.创建分组 || fromInfo.msgType == MsgType.移动好友 || fromInfo.msgType == MsgType.删除好友 || fromInfo.msgType == MsgType.添加好友)
+                    int msgLength;
+                    byte[] buffer = ToolUtils.GetByte(SingleUtils.LOGINER.socket, out msgLength);
+                    string json = Encoding.UTF8.GetString(buffer, 0, msgLength);
+                    MessageInfo fromInfo = null;
+                    byte[] fileInfo = null;
+                    try
                     {
-                        MessageBox.Show(fromInfo.content);
-                        toInfo.msgType = MsgType.获取好友信息;
-                        SocketUtils.SendToSingleClient(toInfo);
+                        fromInfo = SerializerUtil.JsonToObject<MessageInfo>(json);
                     }
-                    else if (fromInfo.msgType == MsgType.用户注册)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(fromInfo.content);
+                        fileInfo = Encoding.UTF8.GetBytes(json);
                     }
-                    else if (fromInfo.msgType == MsgType.获取好友信息)
+                    //接收文件
+                    if (fileInfo != null)
                     {
-                        List<GGGroup> group = SerializerUtil.JsonToObject<List<GGGroup>>(fromInfo.content);
-                        Thread loadFriendThread = new Thread(this.LoadFriends) { IsBackground = true };
-                        loadFriendThread.Start(group);
+
+                        MsgType msgType = (MsgType)fileInfo[0];
+                        FileType fileType = (FileType)fileInfo[1];
+                        SingleUtils.fileByteList.Add(new MessageInfo() { content = ToolUtils.GetFilePath() + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + fileType, fileLength = msgLength, msgType = msgType, fileType = fileType, buffer = fileInfo });
+                        SingleUtils.isWPTD = true;
                     }
-                    else if (fromInfo.msgType == MsgType.上线 || fromInfo.msgType == MsgType.下线)
+                    else
                     {
-                        if (fromInfo.msgType == MsgType.上线 && fromInfo.fromId != SingleUtils.LOGINER.userId)
+
+                        if (fromInfo.msgType == MsgType.创建分组 || fromInfo.msgType == MsgType.移动好友 || fromInfo.msgType == MsgType.删除好友 || fromInfo.msgType == MsgType.添加好友)
                         {
-                            SoundUtils.SystemSound();
+                            MessageBox.Show(fromInfo.content);
+                            toInfo.msgType = MsgType.获取好友信息;
+                            SocketUtils.SendToSingleClient(toInfo);
                         }
-                        SingleUtils.FriendsStr = fromInfo.content;
-                        // 1.客户端收到 有人上线 指令
-                        // 2.向服务器发送[ 获取好友信息 ] 的请求
-                        // 3.服务器向客户端反馈[ 获取好友信息 ] 的响应后，调用 this.LoadFriends(group);方法刷新好友数据
-                        toInfo.msgType = MsgType.获取好友信息;
-                        SocketUtils.SendToSingleClient(toInfo);
-                    }
-
-                    //将信息展现到 聊天面板
-                    if (fromInfo.msgType == MsgType.私聊 || fromInfo.msgType == MsgType.私发抖动)
-                    {
-                        GGUserInfo fromUser = fromInfo.fromUser;
-                        GGUserInfo toUser = fromInfo.toUser;
-
-                        //发送者和接收者反转显示
-                        string chatFormKey = GGUserUtils.GetChatFormKey(toUser, fromUser);
-                        //string chatFormKey = GGUserUtils.GetChatFormKey(fromUser, toUser);
-
-                        //存在聊天窗口 
-                        if (SingleUtils.chatForm.ContainsKey(chatFormKey))
+                        else if (fromInfo.msgType == MsgType.用户注册)
                         {
-                            ChatForm chatFrom = SingleUtils.chatForm[chatFormKey] as ChatForm;
-                            if (chatFrom.showMsgDelMethod != null)
-                            {
-                                chatFrom.WindowState = FormWindowState.Normal;
-                                chatFrom.showMsgDelMethod(fromInfo);
-                            }
+                            MessageBox.Show(fromInfo.content);
                         }
-                        //不存在聊天窗口 
-                        else
+                        else if (fromInfo.msgType == MsgType.获取好友信息)
                         {
-                            SoundUtils.NewestInfoCome();
-                            //将信息添加到集合里面 
-                            fromInfo.msgStateType = msgStateType.未读消息;
-                            fromInfo.fromNoRead = 1;
-                            SingleUtils.noReadDic.Add(fromUser, fromInfo);
-                            if (fromInfo.msgType == MsgType.私发抖动)
+                            List<GGGroup> group = SerializerUtil.JsonToObject<List<GGGroup>>(fromInfo.content);
+                            Thread loadFriendThread = new Thread(this.LoadFriends) { IsBackground = true };
+                            loadFriendThread.Start(group);
+                        }
+                        else if (fromInfo.msgType == MsgType.上线 || fromInfo.msgType == MsgType.下线)
+                        {
+                            if (fromInfo.msgType == MsgType.上线 && fromInfo.fromId != SingleUtils.LOGINER.userId)
                             {
-                                Thread openChatWinThread = new Thread(OpenChatWinThread) { IsBackground = false };
-                                openChatWinThread.Start(fromInfo);
+                                SoundUtils.SystemSound();
                             }
+                            SingleUtils.FriendsStr = fromInfo.content;
+                            // 1.客户端收到 有人上线 指令
+                            // 2.向服务器发送[ 获取好友信息 ] 的请求
+                            // 3.服务器向客户端反馈[ 获取好友信息 ] 的响应后，调用 this.LoadFriends(group);方法刷新好友数据
+                            toInfo.msgType = MsgType.获取好友信息;
+                            SocketUtils.SendToSingleClient(toInfo);
+                        }
+                        if (fromInfo.msgType == MsgType.私发文件 || fromInfo.msgType == MsgType.群发文件)
+                        {
+                            MessageBox.Show(fromInfo.msgType + "");
+                        }
+                        //将信息展现到 聊天面板
+                        else if (fromInfo.msgType == MsgType.私聊 || fromInfo.msgType == MsgType.私发抖动 || fromInfo.msgType == MsgType.私发红包 || fromInfo.msgType == MsgType.系统消息)
+                        {
+                            GGUserInfo fromUser = fromInfo.fromUser;
+                            GGUserInfo toUser = fromInfo.toUser;
+
+                            //发送者和接收者反转显示
+                            string chatFormKey = GGUserUtils.GetChatFormKey(toUser, fromUser);
+
+                            //存在聊天窗口 
+                            if (SingleUtils.chatForm.ContainsKey(chatFormKey))
+                            {
+                                ChatForm chatFrom = SingleUtils.chatForm[chatFormKey] as ChatForm;
+                                if (chatFrom.showMsgDelMethod != null)
+                                {
+                                    chatFrom.WindowState = FormWindowState.Normal;
+                                    chatFrom.showMsgDelMethod(fromInfo);
+                                }
+                            }
+                            //不存在聊天窗口 
                             else
                             {
-                                SingleUtils.isIconTD = true;
+                                SoundUtils.NewestInfoCome();
+                                //将信息添加到集合里面  
+                                fromInfo.fromNoRead = 1;
+                                SingleUtils.noReadDic.Add(fromUser, fromInfo);
+                                if (fromInfo.msgType == MsgType.私发抖动 || fromInfo.msgType == MsgType.私发红包)
+                                {
+                                    Thread openChatWinThread = new Thread((obj) =>
+                                    {
+                                        MessageInfo tmpFromInfo = obj as MessageInfo;
+                                        ChatForm chatForm = new ChatForm(tmpFromInfo.toUser, tmpFromInfo.fromUser);
+                                        Application.Run(chatForm);
+                                    }) { IsBackground = false };
+                                    openChatWinThread.Start(fromInfo);
+                                }
+                                else
+                                {
+                                    SingleUtils.isQQTD = true;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -142,11 +172,10 @@ namespace FrmClient
                     //this.showMsgDelMethod(toInfo);
                     iconHitTimer.Enabled = true;
                     iconHitTimer.Start();
-                    //MessageBox.Show("[" + SingleUtils.LOGINER.userNickName + "]在首页客户端 [ " + this.GetType() + this.Name + " ] 接收消息时报错:" + ex.Message);
+                    MessageBox.Show("[" + SingleUtils.LOGINER.userNickName + "]在首页客户端 [ " + this.GetType() + this.Name + " ] 接收消息时报错:" + ex.Message);
                     SoundUtils.playSound(toInfo.msgType + toInfo.content, EndPointEnum.PC端);
                     break;
                 }
-
             }
         }
 
@@ -306,41 +335,22 @@ namespace FrmClient
         }
 
 
-        private void MainForm_Click(object sender, EventArgs e)
-        {
-            this.TopMost = true;
-        }
-
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (SingleUtils.isIconTD)
+            if (SingleUtils.isQQTD)
             {
-                Thread t = new Thread(IconHit) { IsBackground = true };
+                Thread t = new Thread(() =>
+                {
+                    notifyIcon1.Icon = ToolUtils.GetIcon("None64.ico");
+                    System.Threading.Thread.Sleep(500);
+                    notifyIcon1.Icon = ToolUtils.GetIcon("qq.ico");
+                    System.Threading.Thread.Sleep(500);
+                }) { IsBackground = true };
                 t.Start();
             }
         }
-        /// <summary>
-        /// 托盘闪烁
-        /// </summary>
-        private void IconHit()
-        {
-            try
-            {
-                notifyIcon1.Icon = new Icon(ToolUtils.GetRootPath(@"\Images\Icon\None64.ico"));
-                System.Threading.Thread.Sleep(500);
-                notifyIcon1.Icon = new Icon(ToolUtils.GetRootPath(@"\Images\Icon\qq.ico"));
-                System.Threading.Thread.Sleep(500);
-            }
-            catch (Exception ex)
-            {
-                toInfo.msgType = MsgType.异常报告;
-                toInfo.content = "托盘膳闪烁的线程报错：" + ex.Message;
-                SoundUtils.playSound("", EndPointEnum.PC端);
-                // Application.Exit();
-            }
-
-        }
+    
 
         /// <summary>
         /// 显示基本信息
@@ -440,7 +450,7 @@ namespace FrmClient
         /// <param name="e"></param>
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            SingleUtils.isIconTD = false;
+            SingleUtils.isQQTD = false;
             try
             {
                 Dictionary<GGUserInfo, MessageInfo> tmpNoReadDic = new Dictionary<GGUserInfo, MessageInfo>(SingleUtils.noReadDic);
@@ -518,12 +528,12 @@ namespace FrmClient
         private void GetNoReadMsg()
         {
             string sql = string.Format("SELECT * FROM [dbo].[{0}] where receiveId='{1}' and isRead=0 ", DBTUtils.DBT_NoReadMsg, SingleUtils.LOGINER.userId);
-
+            DBHelper.Excute(string.Format("update [dbo].[{0}] set isRead=1 where receiveId='{1}' and isRead=0 ", DBTUtils.DBT_NoReadMsg, SingleUtils.LOGINER.userId));
             List<NoReadMsg> list = DBHelper.ConvertToModel<NoReadMsg>(sql);
             if (list.Count > 0)
             {
                 SoundUtils.NewestInfoCome();
-                SingleUtils.isIconTD = true;
+                SingleUtils.isQQTD = true;
             }
             foreach (NoReadMsg msg in list)
             {
@@ -536,6 +546,9 @@ namespace FrmClient
                 fromInfo.dateTime = msg.datetime;
                 fromInfo.fromNoRead = 1;
                 SingleUtils.noReadDic.Add(fromUser, fromInfo);
+
+                //添加聊天记录
+                ChatDBUtils.AddRecords(fromInfo);
             }
         }
 
@@ -572,7 +585,7 @@ namespace FrmClient
 
         private void 查找好友ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SingleUtils.OpenForm("查找好友ToolStripMenuItem_Click", new AddFriendFrm());
+            new AddFriendFrm().Show();
         }
 
         private void 创建群ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -599,6 +612,32 @@ namespace FrmClient
             {
             }
 
+        }
+        Image im = null;
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            Thread th = new Thread(() =>
+            {
+                im = this.wp.Image;
+                if (SingleUtils.isWPTD)
+                {
+                    this.wp.Image = null;
+                }
+                Thread.Sleep(500);
+                this.wp.Image = im;
+                Thread.Sleep(500);
+            }) { IsBackground = true };
+            th.Start();
+        }
+
+        private void wp_Click(object sender, EventArgs e)
+        {
+            if (SingleUtils.frmFileList.IsDisposed)
+            {
+                SingleUtils.frmFileList = new frmFileList();
+            }
+            SingleUtils.frmFileList.Show();
+            SingleUtils.frmFileList.ShowFileList();
         }
 
     }

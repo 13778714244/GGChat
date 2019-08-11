@@ -28,31 +28,33 @@ namespace FrmClient.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string userId = NickUtils.GetUserId();
-            string nick = this.nick.Text;
-            string pwd = this.pwd.Text;
-            string relPwd = this.relPwd.Text;
-            string qqSign = this.qqSign.Text;
-
-            string name = userId;
-            string extend = Path.GetExtension(fullFileName);
-            GGUserInfo user = new GGUserInfo() { createTime = DateTime.Now, qqSign = qqSign, userId = userId, userImg = (headImg == null ? "" : name + extend), userNickName = nick, userPwd = pwd };
-
-            if (ChatDBUtils.RegisterUser(user))
+            try
             {
-                HeadImgUtils.SaveRegisterUserHeadImg(this.headImg, user);
-                MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册成功");
+                string userId = NickUtils.GetUserId();
+                string nick = this.nick.Text;
+                string pwd = this.pwd.Text;
+                string relPwd = this.relPwd.Text;
+                string qqSign = this.qqSign.Text;
+
+                string name = userId;
+                string extend = Path.GetExtension(fullFileName);
+                GGUserInfo user = new GGUserInfo() { createTime = DateTime.Now, qqSign = qqSign, userId = userId, userImg = (headImg == null ? "" : name + extend), userNickName = nick, userPwd = pwd };
+
+                if (ChatDBUtils.RegisterUser(user))
+                {
+                    HeadImgUtils.SaveRegisterUserHeadImg(this.headImg, user);
+                    MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册成功");
+                }
+                else
+                {
+                    MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册失败");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(GGUserUtils.ShowNickAndId(user) + "注册失败");
+                MessageBox.Show(ex.Message);
             }
         }
-
-
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -68,7 +70,8 @@ namespace FrmClient.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(NickUtils.GetUserId());
+            //MessageBox.Show(NickUtils.GetUserId());
+            this.Close();
 
         }
 

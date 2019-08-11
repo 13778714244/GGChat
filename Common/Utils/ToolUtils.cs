@@ -64,69 +64,87 @@ namespace Common.Utils
             return "";
         }
 
-
         /// <summary>
-        /// 得到资源文件的路径
+        /// 得到文件目录
         /// </summary>
         /// <returns></returns>
-        public static string GetResourcePath()
+        public static string GetFilePath()
         {
-            string newStr = substringFromLast(Application.StartupPath, @"\", 3, @"\Common\OnLineUsers.txt");
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["filePath"].ToString();
+            return newStr;
+        }
+        /// <summary>
+        /// 得到记住密码文件
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRemPwdFile()
+        {
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["remPwdFile"].ToString();
             return newStr;
         }
 
         /// <summary>
-        /// 得到资源文件的路径
+        /// 得到用户头像目录
         /// </summary>
         /// <returns></returns>
-        public static string GetResourcePath(string appendStr)
+        public static string GetHeadPath()
         {
-            string newStr = substringFromLast(Application.StartupPath, @"\", 2, appendStr);
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["userImgPath"].ToString();
             return newStr;
         }
+
+        /// <summary>
+        ///  得到Icon文件
+        /// </summary>
+        /// <param name="iconFile"></param>
+        /// <returns></returns>
+        public static Icon GetIcon(string iconFile)
+        {
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["iconPath"].ToString() + iconFile;
+            return new Icon(newStr);
+        }
+
+
+
+        /// <summary>
+        /// 得到表情
+        /// </summary>
+        /// <param name="emoji"></param>
+        /// <returns></returns>
+        public static Image GetEmotion(string emoji)
+        {
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["emotionPath"].ToString() + emoji;
+            return Image.FromFile(newStr);
+        }
+
+        /// <summary>
+        /// 得到音频目录
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public static string GetAudioPath(string audio)
+        {
+            string newStr = ToolUtils.GetRootPath();
+            newStr = newStr + ConfigurationManager.AppSettings["audioPath"].ToString() + audio;
+            return newStr;
+        }
+
 
         /// <summary>
         /// 得到项目的根目录
         /// </summary>
         /// <returns></returns>
-        public static string GetRootPath(string appendStr = "")
+        public static string GetRootPath()
         {
-            string newStr = substringFromLast(Application.StartupPath, @"\", 2, appendStr);
+            string newStr = Application.StartupPath;
             return newStr;
         }
 
-        /// <summary>
-        /// 从后面截取字符串
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="c"></param>
-        /// <param name="howMuch"></param>
-        /// <returns></returns>
-        public static string substringFromLast(string str, string c, int howMuch, string appendStr = null)
-        {
-            for (int i = 0; i < howMuch; i++)
-            {
-                str = str.Substring(0, str.LastIndexOf(c));
-            }
-            if (!string.IsNullOrEmpty(appendStr))
-            {
-                str += appendStr;
-            }
-            return str;
-        }
-
-        /// <summary>
-        /// 从前面截取字符串
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="c"></param>
-        /// <param name="howMuch"></param>
-        /// <returns></returns>
-        public static string substringFromIndex(string str, char c, int strIndex)
-        {
-            string[] strArr = str.Split(c);
-            return strArr[strIndex];
-        }
 
         /// <summary>
         /// 字符串转化为字节
@@ -150,6 +168,18 @@ namespace Common.Utils
         }
 
         /// <summary>
+        /// 得到字节数组
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static byte[] GetByte(Socket clientSocket,out int  resLen)
+        {
+            byte[] buffer = new byte[1024 * 1024 * 5];
+            int msgLength = clientSocket.Receive(buffer);
+            resLen = msgLength;
+            return buffer;
+        }
+        /// <summary>
         /// 得到字符串
         /// </summary>
         /// <param name="msg"></param>
@@ -168,7 +198,7 @@ namespace Common.Utils
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public static string GetSPLine()
+        public static string GetSplitLine()
         {
 
             string msg = "";
@@ -194,21 +224,6 @@ namespace Common.Utils
             return msg;
         }
 
-        /// <summary>
-        /// 得到分割线
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <returns></returns>
-        public static string GetSpan(int howMuch = 100)
-        {
-
-            string msg = "";
-            for (int i = 0; i < howMuch; i++)
-            {
-                msg += " ";
-            }
-            return msg;
-        }
 
         /// <summary>
         /// 【解析】得到socket发送的字节信息
@@ -431,7 +446,5 @@ namespace Common.Utils
                 //MessageBox.Show("客户端将字节发送信息给服务端," + ex.Message);
             }
         }
-
-
     }
 }

@@ -8,7 +8,7 @@ namespace Common.enums
 {
     public enum FileType
     {
-        jpg = 0,
+        jpg = 10,
         png,
         gif,
         xls,
@@ -18,14 +18,14 @@ namespace Common.enums
         txt,
         mp3,
         mp4,
-        //wmv,
-        //rar,
-        //zip,
-        //exe,
-        //bat,
-        //js,
-        //css,
-        //html,
-        //htm,
+        wmv,
+        rar,
+        zip,
+        exe,
+        bat,
+        js,
+        css,
+        html,
+        htm,
     }
 }

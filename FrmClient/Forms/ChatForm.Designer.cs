@@ -1,33 +1,33 @@
-﻿namespace FrmClient
-{
-    partial class ChatForm
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+﻿﻿namespace FrmClient
+ {
+     partial class ChatForm
+     {
+         /// <summary>
+         /// Required designer variable.
+         /// </summary>
+         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+         /// <summary>
+         /// Clean up any resources being used.
+         /// </summary>
+         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+         protected override void Dispose(bool disposing)
+         {
+             if (disposing && (components != null))
+             {
+                 components.Dispose();
+             }
+             base.Dispose(disposing);
+         }
 
-        #region Windows Form Designer generated code
+         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+         /// <summary>
+         /// Required method for Designer support - do not modify
+         /// the contents of this method with the code editor.
+         /// </summary>
+         private void InitializeComponent()
+         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -40,12 +40,13 @@
             this.chatRecords = new CCWin.SkinControl.RtfRichTextBox();
             this.skToolMenu = new CCWin.SkinControl.SkinToolStrip();
             this.toolFont = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEmotion = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.redBtn = new System.Windows.Forms.ToolStripButton();
             this.msgContent = new CCWin.SkinControl.RtfRichTextBox();
             this.bottomPanel = new System.Windows.Forms.Panel();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
@@ -255,7 +256,6 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 2000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // mainSplit
             // 
@@ -391,12 +391,13 @@
             this.skToolMenu.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.None;
             this.skToolMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolFont,
+            this.toolStripButton4,
             this.toolStripButton8,
             this.toolStripButtonEmotion,
-            this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripButton6,
-            this.toolStripButton7});
+            this.toolStripButton7,
+            this.redBtn});
             this.skToolMenu.Location = new System.Drawing.Point(0, 106);
             this.skToolMenu.Name = "skToolMenu";
             this.skToolMenu.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
@@ -421,6 +422,16 @@
             this.toolFont.ToolTipText = "字体";
             this.toolFont.Click += new System.EventHandler(this.toolFont_Click);
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.White;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(24, 37);
+            this.toolStripButton4.Text = "手写板";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
             // toolStripButton8
             // 
             this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -443,15 +454,6 @@
             this.toolStripButtonEmotion.ToolTipText = "表情";
             this.toolStripButtonEmotion.Click += new System.EventHandler(this.toolStripButtonEmotion_Click);
             // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.White;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(24, 37);
-            this.toolStripButton4.Text = "手写板";
-            // 
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -470,6 +472,7 @@
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(73, 37);
             this.toolStripButton6.Text = "消息记录";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton7
             // 
@@ -480,6 +483,16 @@
             this.toolStripButton7.Size = new System.Drawing.Size(24, 37);
             this.toolStripButton7.Text = "发送图片（支持Gif）";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // redBtn
+            // 
+            this.redBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.redBtn.Image = ((System.Drawing.Image)(resources.GetObject("redBtn.Image")));
+            this.redBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.redBtn.Name = "redBtn";
+            this.redBtn.Size = new System.Drawing.Size(24, 37);
+            this.redBtn.Text = "红包";
+            this.redBtn.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // msgContent
             // 
@@ -936,7 +949,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.Load += new System.EventHandler(this.ChatForm_Load);
             this.Shown += new System.EventHandler(this.ChatForm_Shown);
-            this.Click += new System.EventHandler(this.ChatForm_Click);
             this.mainSplit.Panel1.ResumeLayout(false);
             this.mainSplit.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).EndInit();
@@ -969,59 +981,60 @@
             this.skinToolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
-        }
+         }
 
-        #endregion
+         #endregion
 
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private CCWin.SkinControl.SkinToolStrip skinToolStrip1;
-        private CCWin.SkinControl.SkinLabel skinLabel3;
-        private CCWin.SkinControl.SkinLabel friendQQSign;
-        private CCWin.SkinControl.SkinPanel righPanel;
-        private CCWin.SkinControl.SkinToolStrip skToolMenu;
-        private System.Windows.Forms.ToolStripButton toolFont;
-        private System.Windows.Forms.ToolStripButton toolStripButtonEmotion;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private JustLib.Controls.GifBox gifBox_wait;
-        private CCWin.SkinControl.SkinButton skinButton_send;
-        private CCWin.SkinControl.SkinButton btnClose;
-        private CCWin.SkinControl.SkinLabel skinLabel_p2PState;
-        private System.Windows.Forms.PictureBox pictureBox_state;
-        private CCWin.SkinControl.SkinLabel skinLabel_FriendID;
-        private CCWin.SkinControl.SkinLabel skinLabel_FriendName;
-        private CCWin.SkinControl.SkinLabel skinLabel_depTitle;
-        private CCWin.SkinControl.SkinLabel skinLabel4;
-        private CCWin.SkinControl.SkinLabel skinLabel5;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.ListView memberList;
-        private CCWin.SkinControl.RtfRichTextBox msgContent;
-        private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel topPanel;
-        private System.Windows.Forms.Panel bottomPanel;
-        private System.Windows.Forms.SplitContainer LeftAndrightSplit;
-        private System.Windows.Forms.SplitContainer recordAndSendMsgSplit;
-        private System.Windows.Forms.SplitContainer mainSplit;
-        private CCWin.SkinControl.SkinPanel skinPanel2;
-        private CCWin.SkinControl.SkinPanel mainLeftPanel;
-        private System.Windows.Forms.PictureBox userHeadImg;
-        public CCWin.SkinControl.RtfRichTextBox chatRecords;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label friendNickName;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.OpenFileDialog ofd;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.Button button1;
+         private System.Windows.Forms.ToolStripButton toolStripButton1;
+         private System.Windows.Forms.ToolStripButton toolStripButton2;
+         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+         private System.Windows.Forms.ToolStripButton toolStripButton3;
+         private CCWin.SkinControl.SkinToolStrip skinToolStrip1;
+         private CCWin.SkinControl.SkinLabel skinLabel3;
+         private CCWin.SkinControl.SkinLabel friendQQSign;
+         private CCWin.SkinControl.SkinPanel righPanel;
+         private CCWin.SkinControl.SkinToolStrip skToolMenu;
+         private System.Windows.Forms.ToolStripButton toolFont;
+         private System.Windows.Forms.ToolStripButton toolStripButtonEmotion;
+         private System.Windows.Forms.ToolStripButton toolStripButton4;
+         private System.Windows.Forms.ToolStripButton toolStripButton5;
+         private System.Windows.Forms.ToolStripButton toolStripButton6;
+         private System.Windows.Forms.ToolStripButton toolStripButton7;
+         private JustLib.Controls.GifBox gifBox_wait;
+         private CCWin.SkinControl.SkinButton skinButton_send;
+         private CCWin.SkinControl.SkinButton btnClose;
+         private CCWin.SkinControl.SkinLabel skinLabel_p2PState;
+         private System.Windows.Forms.PictureBox pictureBox_state;
+         private CCWin.SkinControl.SkinLabel skinLabel_FriendID;
+         private CCWin.SkinControl.SkinLabel skinLabel_FriendName;
+         private CCWin.SkinControl.SkinLabel skinLabel_depTitle;
+         private CCWin.SkinControl.SkinLabel skinLabel4;
+         private CCWin.SkinControl.SkinLabel skinLabel5;
+         private System.Windows.Forms.NotifyIcon notifyIcon1;
+         private System.Windows.Forms.ListView memberList;
+         private CCWin.SkinControl.RtfRichTextBox msgContent;
+         private System.Windows.Forms.ImageList imageList1;
+         private System.Windows.Forms.ToolStripButton toolStripButton8;
+         private System.Windows.Forms.PictureBox pictureBox1;
+         private System.Windows.Forms.Panel topPanel;
+         private System.Windows.Forms.Panel bottomPanel;
+         private System.Windows.Forms.SplitContainer LeftAndrightSplit;
+         private System.Windows.Forms.SplitContainer recordAndSendMsgSplit;
+         private System.Windows.Forms.SplitContainer mainSplit;
+         private CCWin.SkinControl.SkinPanel skinPanel2;
+         private CCWin.SkinControl.SkinPanel mainLeftPanel;
+         private System.Windows.Forms.PictureBox userHeadImg;
+         public CCWin.SkinControl.RtfRichTextBox chatRecords;
+         private System.Windows.Forms.GroupBox groupBox1;
+         private System.Windows.Forms.Label friendNickName;
+         private System.Windows.Forms.Panel panel1;
+         private System.Windows.Forms.Timer timer1;
+         private System.Windows.Forms.OpenFileDialog ofd;
+         private System.Windows.Forms.ColorDialog colorDialog1;
+         private System.Windows.Forms.FontDialog fontDialog1;
+         private System.Windows.Forms.Button button1;
+         private System.Windows.Forms.ToolStripButton redBtn;
 
 
-    }
-}
+     }
+ }

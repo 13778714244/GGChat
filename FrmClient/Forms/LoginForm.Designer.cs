@@ -223,6 +223,7 @@
             this.skinButton3.TabIndex = 142;
             this.skinButton3.Text = "再开一个";
             this.skinButton3.UseVisualStyleBackColor = false;
+            this.skinButton3.Visible = false;
             this.skinButton3.Click += new System.EventHandler(this.skinButton3_Click);
             // 
             // skinButton2
@@ -331,7 +332,6 @@
             this.textBoxPwd.SkinTxt.PasswordChar = '●';
             this.textBoxPwd.SkinTxt.Size = new System.Drawing.Size(246, 22);
             this.textBoxPwd.SkinTxt.TabIndex = 0;
-            this.textBoxPwd.SkinTxt.Text = "000";
             this.textBoxPwd.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.textBoxPwd.SkinTxt.WaterText = "密码";
             this.textBoxPwd.TabIndex = 138;
@@ -362,7 +362,6 @@
             this.textBoxId.SkinTxt.Name = "BaseText";
             this.textBoxId.SkinTxt.Size = new System.Drawing.Size(289, 22);
             this.textBoxId.SkinTxt.TabIndex = 0;
-            this.textBoxId.SkinTxt.Text = "617828826";
             this.textBoxId.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.textBoxId.SkinTxt.WaterText = "帐号";
             this.textBoxId.TabIndex = 137;
@@ -496,6 +495,7 @@
             this.button1.TabIndex = 143;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // LoginForm

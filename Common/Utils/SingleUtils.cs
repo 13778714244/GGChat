@@ -24,6 +24,6 @@ namespace Common.Utils
         /// <summary>
         /// 聊天记录表
         /// </summary>
-        public static string DBT_ChatRecord = "ChatRecord";
+        public static string DBT_ChatRecord = "Records"; 
     }
 }

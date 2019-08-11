@@ -26,7 +26,8 @@ namespace FrmClient
     public partial class LoginForm : BaseForm
     {
 
-        private Image NomalBack;
+        private List<string> remeberList = new List<string>();
+      
         MessageInfo toInfo = new MessageInfo() { msgType = MsgType.登录 };
 
         public LoginForm()
@@ -50,22 +51,30 @@ namespace FrmClient
         /// <param name="e"></param>
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            string remPwdTxtPath = ToolUtils.GetResourcePath(@"\Files\remPwd.txt");
-            string[] remPwdArr = File.ReadAllLines(remPwdTxtPath, Encoding.Default);
+            string remPwdTxtPath = ToolUtils.GetRemPwdFile();
+            string[] remPwdArr = FileUtils.ReadRemeberInfo(remPwdTxtPath);
+
+            GGUserInfo user = new GGUserInfo() { isOnLine = true, userImg = remPwdArr[0].Split(' ')[3].ToString() };
+            string user_userId = remPwdArr[0].Split(' ')[0].ToString(), user_userPwd = remPwdArr[0].Split(' ')[1].ToString();
+            Image user_userImg = HeadImgUtils.ShowHeadImg(user);
+
             for (int i = 0; i < remPwdArr.Length; i++)
             {
                 string[] userItem = remPwdArr[i].Split(' ');
                 string userId = userItem[0];
+                remeberList.Add(userId);
                 string userPwd = userItem[1];
                 string userNickName = userItem[2];
+                string userImg = userItem[3];
+                user = new GGUserInfo() { userId = userId, userPwd = userPwd, userNickName = userNickName, userImg = userImg, isOnLine = true };
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.AutoSize = false;
                 item.Size = new System.Drawing.Size(182, 45);
                 item.Text = userNickName + "\n" + userId;
-                item.Tag = new string[] { userId, userNickName };  //Tag用于存储UserID 和 NickName
+                item.Tag = new string[] { userId, userPwd };  //Tag用于存储 userId 和 userPwd
                 try
                 {
-                    item.Image = Image.FromFile(ToolUtils.GetResourcePath(@"\Images\userImg\") + userItem[3]); //根据ID获取头像
+                    item.Image = HeadImgUtils.ShowHeadImg(user);
                 }
                 catch (Exception)
                 {
@@ -74,6 +83,13 @@ namespace FrmClient
                 menuStripId.Height += 45;
                 menuStripId.Items.Add(item);
             }
+
+
+            //显示第一项
+            textBoxId.SkinTxt.Text = user_userId;
+            this.textBoxPwd.SkinTxt.Text = user_userPwd;
+            panelHeadImage.BackgroundImage = user_userImg;
+            this.checkBoxRememberPwd.Checked = true;
         }
 
 
@@ -82,8 +98,10 @@ namespace FrmClient
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             string[] tag = (string[])item.Tag;
-            textBoxId.SkinTxt.Text = tag[0];
+            this.textBoxId.SkinTxt.Text = tag[0];
+            this.textBoxPwd.SkinTxt.Text = tag[1];
             panelHeadImage.BackgroundImage = item.Image;
+            this.checkBoxRememberPwd.Checked = true;
         }
 
         private void checkBoxAutoLogin_CheckedChanged(object sender, EventArgs e)
@@ -130,6 +148,14 @@ namespace FrmClient
                     SingleUtils.LOGINER = loginUser;
                     this.Hide();
                     new MainClientForm(this).Show();
+                    //记住密码
+                    if (checkBoxRememberPwd.Checked)
+                    {
+                        if (!remeberList.Contains(loginUser.userId))
+                        {
+                            FileUtils.RemeberPwd(loginUser);
+                        }
+                    }
                 }
                 else if (fromInfo.msgType == MsgType.已登录)
                 {
@@ -146,22 +172,18 @@ namespace FrmClient
             }
         }
 
-
-
-
+         
 
         private void skinButton2_MouseClick(object sender, MouseEventArgs e)
         {
-            this.menuStripId.Show(this.textBoxId, 1, this.textBoxId.Height + 1);
-            NomalBack = this.skinButton2.NormlBack;
+            this.menuStripId.Show(this.textBoxId, 1, this.textBoxId.Height + 1); 
             this.skinButton2.NormlBack = this.skinButton2.DownBack;
             this.skinButton2.Enabled = false;
         }
 
         private void menuStripId_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
-            this.skinButton2.Enabled = true;
-            this.skinButton2.NormlBack = NomalBack;
+            this.skinButton2.Enabled = true; 
         }
 
         private void skinButton3_Click(object sender, EventArgs e)
@@ -192,8 +214,7 @@ namespace FrmClient
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            RegisterFrm frm = new RegisterFrm();
-            frm.Show();
+            new RegisterFrm().Show();
 
         }
 

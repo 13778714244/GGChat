@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.model;
 using Common.Utils;
+using FrmClient.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 namespace FrmClient
 {
     public partial class UserInfoForm : Form
-    { 
+    {
         public UserInfoForm()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace FrmClient
         private void UserInfoForm_VisibleChanged(object sender, EventArgs e)
         {
             GGUserInfo user = this.Tag as GGUserInfo;
-            userHeadImg.Image = Image.FromFile(ToolUtils.GetResourcePath(@"\Images\UserImg\" + user.userImg));
+            userHeadImg.Image = HeadImgUtils.ShowHeadImg(user);
             userName.Text = user.userNickName;
             userQm.Text = user.qqSign;
         }

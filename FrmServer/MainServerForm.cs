@@ -30,7 +30,8 @@ namespace FrmServer
     {
         private Socket serverSocket = null;
         private delegate void ServerDelegate(object str);
-        private MessageInfo toInfo = new MessageInfo() { msgType = MsgType.系统消息, fromId = "服务器" };
+        private GGUserInfo fromUser = new GGUserInfo() { canSpeak = true, createTime = DateTime.Now, userImg = "default.jpg", userId = "0", userNickName = "服务器" };
+        private MessageInfo toInfo = new MessageInfo() { msgType = MsgType.系统消息, fromId = "0" };
 
 
         public MainServerForm()
@@ -39,6 +40,8 @@ namespace FrmServer
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            toInfo.fromUser = this.fromUser;
         }
 
 
@@ -220,8 +223,9 @@ namespace FrmServer
         private void button2_Click(object sender, EventArgs e)
         {
             string msg = serverMsgContent.Rtf;
-            if (msg != "")
+            if (!string.IsNullOrEmpty(msg))
             {
+                toInfo.msgType = MsgType.系统消息;
                 toInfo.content = msg;
                 //显示到服务器端
                 ChatUtils.AppendMsgToServerChatList(this.serverChatRecords, toInfo);
@@ -429,8 +433,22 @@ namespace FrmServer
                 string fileContent = File.ReadAllText(path, Encoding.Default);
                 string fileName = Path.GetFileName(path);
 
+                toInfo.fileType = FileUtils.GetFileExtendName(Path.GetExtension(fileName));
                 toInfo.msgType = MsgType.群发文件;
                 toInfo.content = "系统给所有人发送了文件 [ " + fileName + " ] ";
+                if (toInfo.fileType == 0)
+                {
+                    MessageBox.Show(fileName + "的文件类型为：" + Path.GetExtension(fileName) + "，该文件类型不允许发送");
+                    return;
+                }
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] buffer = new byte[1024 * 1024 * 5];
+                    int fileLength = fs.Read(buffer, 0, buffer.Length);
+
+                    toInfo.buffer = buffer;
+                    toInfo.fileLength = fileLength;
+                }
                 //显示到服务器端
                 ChatUtils.AppendMsgToServerChatList(this.serverChatRecords, toInfo);
                 //发送给其他客户端 
@@ -594,6 +612,6 @@ namespace FrmServer
         {
             Application.Exit();
         }
-         
+
     }
 }
